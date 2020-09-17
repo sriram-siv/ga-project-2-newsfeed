@@ -22,3 +22,7 @@ export const getEverything = params => {
   return axios.get(`${baseUrl}/everything?${defineQuery(query, source)}apiKey=${apiKey}`)
   // return axios.get(`${baseUrl}/everything?q=${query}&sources=${source}&apiKey=${apiKey}`)
 }
+
+export const getSources = () => {
+  return axios.get(`${baseUrl}/sources?apiKey=${apiKey}`)
+}
