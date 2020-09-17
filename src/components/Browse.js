@@ -89,7 +89,7 @@ class Browse extends React.Component {
           <Filter params={this.state.params} suggestions={this.state.suggestions} formActive={this.state.formActive} handleChange={this.handleChange} handleSubmit={this.handleSubmit} handleAutocomplete={this.handleAutocomplete} />
           {!this.state.formActive && 
           <div className="container column is-full box redisplay-form">
-            <div>Current filters: {this.state.params.}</div>
+            <div>Current filters: {}</div>
             <button className="button is-primary is-active">Back to filters</button>
           </div>
           }
