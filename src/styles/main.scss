@@ -1,11 +1,6 @@
 @import '~bulma/bulma.sass';
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,600;1,300&display=swap');
 
-
-* {
-  font-size: 20px;
-}
-
 body {
   font-family: 'Open Sans', sans-serif;
 }
@@ -21,7 +16,7 @@ body {
   justify-content: center;
 }
 
-.news-card {
+.news-card, .news-card-text-only {
   position: relative;
   width: 300px;
   height: 300px;
@@ -34,14 +29,23 @@ body {
   img {
     opacity: 0;;
   }
-  h3 {
+  h4 {
     top: -150px;
     background-color: rgba(255,255,255,1);
   }
-  p {
+  .article-info {
     top: -150px;
     opacity: 1;
     z-index: 100;
+  }
+  .read-more {
+    opacity: 1;
+  }
+}
+
+.news-card-text-only:hover {
+  p {
+    opacity: 1;
   }
 }
 
@@ -69,7 +73,8 @@ body {
   transition: all 1s;
 }
 
-.news-card h3 {
+.news-card h4,
+.news-card-text-only h4 {
   position: relative;
   top: 0;
   padding: 15px 20px;
@@ -80,17 +85,24 @@ body {
   transition: all 1s;
 }
 
-.news-card p {
-  padding: 15px;
+.news-card p,
+.news-card-text-only p {
+  font-size: medium;
+  padding: 0 15px;
   opacity: 0;
-  position: relative;
-  top: 0;
   transition: all 1s;
   background-color: white;
 }
 
-.news-card-no-img {
+.article-info {
+  position: relative;
+  top: 0;
+}
 
+.read-more {
+  position: absolute;
+  top: 250px;
+  right: 10px;
 }
 
 .autocomplete {
@@ -103,7 +115,6 @@ body {
 .autocomplete-item {
   font-size: small;
   margin: 3px 5px;
-  background: darkgreen;
 }
 
 .keyword-section{
