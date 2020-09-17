@@ -1,7 +1,8 @@
 import React from 'react'
-import { getEverything } from '../lib/api'
+import { getEverything, getSources } from '../lib/api'
 
 import NewsCard from './NewsCard'
+import Filter from './Filter'
 
 class Browse extends React.Component {
   
@@ -10,15 +11,33 @@ class Browse extends React.Component {
       query: 'brexit',
       source: ''
     },
-
+    sources: {},
     articles: []
   }
 
   async componentDidMount() {
-    const response = await getEverything(this.state.params)
-    this.setState({ articles: response.data.articles })
+    const articles = await getEverything(this.state.params)
+    const sources = await getSources()
+    console.log(articles)
+    console.log(sources)
+    this.setState({ articles: articles.data, sources: sources.data })
   }
 
+
+  findMatchingSources(wordSearched, object){
+    // const sources = object.data.articles
+    console.log(object.sources)
+    const matches = object.sources.filter(source => {
+      const regex = new RegExp(wordSearched, 'i')
+      
+      return source.id.match(regex) 
+    })
+
+    console.log(matches)
+    // return object.data.articles
+    // const regex = new RegExp(wordSearched, 'gi')
+    
+  }
 
   handleSubmit = async (event) => {
     event.preventDefault()
@@ -36,50 +55,19 @@ class Browse extends React.Component {
 
     this.setState({ params })
 
-    
+    this.findMatchingSources(event.target.value, this.state.sources)
+
+
   }
 
   render() {
     return (
       <>
+        <Filter params={this.state.params} handleChange={this.handleChange} handleSubmit={this.handleSubmit}/>
         <div className="news-grid">
-          {this.state.articles.map((article, i) => <NewsCard key={i} {...article}/> )}
-        </div>
-
-        <div className="columns">
-          <form onSubmit={this.handleSubmit} className="column is-half is-offset-one-quarter box">
-            <div className="field">
-              <label className="label">Keyword in Title</label>
-              <div className="control">
-                <input
-                  className="input"
-                  placeholder="Title"
-                  name='query'
-                  value={this.state.params.query}
-                  onChange={this.handleChange}
-                />
-              </div>
-            </div>
-            <div className="field">
-              <label className="label">Source</label>
-              <div className="control">
-                <input
-                  className="input"
-                  placeholder="Source"
-                  name="source"
-                  value={this.state.params.source}
-                  onChange={this.handleChange}
-                />
-              </div>
-            </div>
-
-            <div className="field">
-              <button onSubmit={this.handleSubmit} type="submit" className="button is-fullwidth is-info">Submit</button>
-            </div>
-          </form>
-        </div>
+          {this.state.articles.length > 0 && this.state.articles.map((article, i) => <NewsCard key={i} {...article}/> )}
+        </div>  
       </>
-
     )
   }
 }
