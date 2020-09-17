@@ -12,6 +12,7 @@ const App = () => {
       <Switch>
         <Route exact path='/' component={Home} />
         <Route path='/browse' component={Browse} />
+
       </Switch>
     </BrowserRouter>
   )
