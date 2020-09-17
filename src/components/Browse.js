@@ -12,7 +12,8 @@ class Browse extends React.Component {
       source: ''
     },
     sources: {},
-    articles: []
+    articles: [],
+    suggestions: []
   }
 
   async componentDidMount() {
@@ -25,19 +26,18 @@ class Browse extends React.Component {
 
 
   findMatchingSources(wordSearched, object){
-    // const sources = object.data.articles
     console.log(object.sources)
     const matches = object.sources.filter(source => {
       const regex = new RegExp(wordSearched, 'i')
       
       return source.id.match(regex) 
     })
-
-    console.log(matches)
-    // return object.data.articles
-    // const regex = new RegExp(wordSearched, 'gi')
-    
+    return matches
   }
+
+  // displayMatches() {
+  //   const matchesArray = 
+  // } 
 
   handleSubmit = async (event) => {
     event.preventDefault()
@@ -53,9 +53,15 @@ class Browse extends React.Component {
       [event.target.name]: event.target.value
     }
 
-    this.setState({ params })
+    // this.setState({  })
 
-    this.findMatchingSources(event.target.value, this.state.sources)
+    const matchesArray = this.findMatchingSources(event.target.value, this.state.sources)
+    const newSuggestions = matchesArray.map(source => source.name)
+    
+    this.setState({
+      params,
+      suggestions: newSuggestions
+    })
 
 
   }
@@ -63,7 +69,7 @@ class Browse extends React.Component {
   render() {
     return (
       <>
-        <Filter params={this.state.params} handleChange={this.handleChange} handleSubmit={this.handleSubmit}/>
+        <Filter params={this.state.params} suggestions={this.state.suggestions} handleChange={this.handleChange} handleSubmit={this.handleSubmit} />
         <div className="news-grid">
           {this.state.articles.length > 0 && this.state.articles.map((article, i) => <NewsCard key={i} {...article}/> )}
         </div>  

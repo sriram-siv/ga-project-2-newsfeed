@@ -1,6 +1,6 @@
 import React from 'react'
 
-const Filter = ({ params, handleChange, handleSubmit }) => {
+const Filter = ({ params, suggestions, handleChange, handleSubmit }) => {
   return (
     <div className="columns">
       <form onSubmit={handleSubmit} className="column is-half is-offset-one-quarter box">
@@ -26,6 +26,9 @@ const Filter = ({ params, handleChange, handleSubmit }) => {
               value={params.source}
               onChange={handleChange}
             />
+            <ul className="suggestions">
+              {suggestions.map(source => <li key={source} >{source}</li>)}
+            </ul>
           </div>
         </div>
 
