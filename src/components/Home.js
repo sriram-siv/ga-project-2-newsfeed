@@ -15,6 +15,11 @@ class Home extends React.Component {
     if (!keywords) return
     const keywordsObj = await this.getArticles(keywords)
     this.setState({ keywords: keywordsObj })
+
+    const hero = document.querySelector('.hero')
+    hero.style.height = '270px'
+    const loading = document.querySelector('.loading')
+    loading.style.opacity = '0'
   }
 
   async getArticles(keywords) {
@@ -33,7 +38,7 @@ class Home extends React.Component {
   render() {
     return (
       <>
-        <section className={`hero is-info is-bold ${!this.state.keywords[0] ? 'is-fullheight-with-navbar' : ''}`}>
+        <section className='hero is-info is-bold'>
           <div className="hero-body">
             <div className="container">
               <h1 className="title is-1 has-text-centered">
@@ -41,6 +46,7 @@ class Home extends React.Component {
               </h1>
               <p className="intro-blurb">Browse, create, curate<br/> Your own personalised news feed</p>
             </div>
+            <div className="loading">LOADING</div>
           </div>
         </section>
         {this.state.keywords[0] && this.state.keywords.map((keyword, i) => {

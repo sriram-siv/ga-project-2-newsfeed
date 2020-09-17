@@ -15,6 +15,12 @@ body {
   background-color: #888;
 }
 
+.hero {
+  height: calc(100vh - 52px);
+  transition: all 1s;
+  transition-timing-function: ease-in-out;
+}
+
 .hero-body .container .title {
   font-weight: 400;
   font-size: 4.5em;
@@ -25,6 +31,15 @@ body {
   background-image: linear-gradient(lightgreen,
     lightgreen 8px, lightblue 7px, white 90%);
   border-top: 10px solid lightpink;
+}
+
+.loading {
+  margin-top: 100px;
+  opacity: 1;
+  transition: all 1s;
+  color: #555;
+  text-align: center;
+  font-size: 1.2em;
 }
 
 .intro-blurb {
