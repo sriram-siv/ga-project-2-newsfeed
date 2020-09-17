@@ -12,35 +12,21 @@ class Home extends React.Component {
 
   async componentDidMount() {
     const keywords = getKeywords()
-
     if (!keywords) return
-
     const keywordsObj = await this.getArticles(keywords)
     this.setState({ keywords: keywordsObj })
-    console.log(keywordsObj)
-
-    // this.state.keywords.map(keyword => console.log(keyword))
   }
 
   async getArticles(keywords) {
 
-    const keywordsObj = await keywords.map(keyword => {
-      return {
-        query: keyword,
-        articles: getEverything({ query: keyword, pageSize: 5 })
-      }
-    })
+    const keywordsObj = []
+
+    for (let i = 0; i < keywords.length; i++) {
+      const response = await getEverything({ query: keywords[i], pageSize: 5 })
+      keywordsObj.push({ query: keywords[i], articles: response.data.articles })
+    }
 
     return keywordsObj
-
-
-    // const params = {
-    //   query: query,
-    //   pageSize: 5
-    // }
-
-    // const response = await getEverything(params)
-    // return response.data.articles
   }
 
 
@@ -58,7 +44,14 @@ class Home extends React.Component {
           </div>
         </section>
         <div className="news-grid">
-          {this.state.keywords[0] && this.state.keywords.map((article, i) => <NewsCard key={i} {...article} />)}
+          {this.state.keywords[0] && this.state.keywords.map(keyword => {
+            return (
+              <>
+                <h3>{keyword.query}</h3>
+                {keyword.articles.map((article, i) => <NewsCard key={i} {...article} />)}
+              </>
+            )
+          })}
         </div>
       </>
     )
