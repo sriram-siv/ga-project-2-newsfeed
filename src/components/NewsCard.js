@@ -1,12 +1,11 @@
 import React from 'react'
 
-const NewsCard = ({ title }) => {
+const NewsCard = ({ title, urlToImage }) => {
 
   return (
     <div className="news-card">
-      {title}
-      
-      {/* img, h3 */}
+      <h3>{title}</h3>
+      {urlToImage && <img src={urlToImage}/>}
 
     </div>
   )
