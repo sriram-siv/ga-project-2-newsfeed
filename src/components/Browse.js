@@ -36,10 +36,16 @@ class Browse extends React.Component {
     event.preventDefault()
     const response = await getEverything(this.state.params)
     console.log(response)
-
+    // Error message -> no source matching tht name
     this.setState({ 
       articles: response.data.articles, 
       formActive: false
+    })
+  }
+
+  redisplayForm = () => {
+    this.setState({
+      formActive: true
     })
   }
 
@@ -53,9 +59,13 @@ class Browse extends React.Component {
     
     if (event.target.name === 'sourceName' && this.state.sources) {
       // TODO on change delete param id
-      // Error message -> no source matching tht name
+      // Regex not currently working with spaces
       const matchesArray = this.findMatchingSources(event.target.value)
       suggestions = matchesArray.map(source => source.name)
+
+      if (!event.target.value){
+        suggestions = null
+      }
     }
     
     this.setState({
@@ -86,11 +96,16 @@ class Browse extends React.Component {
     return (
       <>
         <div className="browse-outercontainer">
-          <Filter params={this.state.params} suggestions={this.state.suggestions} formActive={this.state.formActive} handleChange={this.handleChange} handleSubmit={this.handleSubmit} handleAutocomplete={this.handleAutocomplete} />
+          <Filter params={this.state.params} 
+            suggestions={this.state.suggestions} 
+            formActive={this.state.formActive} 
+            handleChange={this.handleChange} 
+            handleSubmit={this.handleSubmit} 
+            handleAutocomplete={this.handleAutocomplete} />
           {!this.state.formActive && 
           <div className="container column is-full box redisplay-form">
-            <div>Current filters: {}</div>
-            <button className="button is-primary is-active">Back to filters</button>
+            <div>Current filters: {this.state.params.query}</div>
+            <button onClick={this.redisplayForm} className="button is-primary is-active">Back to filters</button>
           </div>
           }
           <div className="news-grid">
