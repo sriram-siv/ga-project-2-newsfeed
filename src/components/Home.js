@@ -14,7 +14,7 @@ class Home extends React.Component {
     const keywords = getKeywords()
 
     if (!keywords) return
-    
+
     const keywordsObj = await this.getArticles(keywords)
     this.setState({ keywords: keywordsObj })
     console.log(keywordsObj)
@@ -24,10 +24,10 @@ class Home extends React.Component {
 
   async getArticles(keywords) {
 
-    const keywordsObj = keywords.map(async keyword => {
+    const keywordsObj = await keywords.map(keyword => {
       return {
         query: keyword,
-        articles: await getEverything({ query: keyword, pageSize: 5 })
+        articles: getEverything({ query: keyword, pageSize: 5 })
       }
     })
 
