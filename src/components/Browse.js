@@ -1,5 +1,6 @@
 import React from 'react'
 import { getEverything, getSources } from '../lib/api'
+import { saveKeyword } from '../lib/feed'
 
 import NewsCard from './NewsCard'
 import Filter from './Filter'
@@ -92,6 +93,10 @@ class Browse extends React.Component {
     this.setState({ params, suggestions: [] })
   }
 
+  addToFeed = (param) => {
+    if (param === 'query') saveKeyword(this.state.params.query)
+  }
+
   render() {
     return (
       <>
@@ -107,10 +112,15 @@ class Browse extends React.Component {
             <button onClick={this.redisplayForm} className="button is-fullwidth to-filters">Back to filters</button>
             <div className="current-filters">
               <h2>Current filters</h2>
-              <p>Click to save to your feed:</p> 
               <div className="buttons are-small button-box">
-                {this.state.params.query && <button className="button add-feed">{this.state.params.query}+</button>}
-                {this.state.params.source && <button className="button add-feed">{this.state.params.source}+</button>}
+                {this.state.params.query &&
+                  <>
+                    <p>{this.state.params.query}</p>
+                    <button className="button add-feed" onClick={() => this.addToFeed('query')}>ADD TO FEED</button>
+                    <br />
+                  </>
+                }
+                {/* {this.state.params.source && <button className="button add-feed">{this.state.params.source}+</button>} */}
               </div>
             </div>
           </div>
