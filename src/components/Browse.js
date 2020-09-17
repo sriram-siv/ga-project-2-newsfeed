@@ -14,7 +14,8 @@ class Browse extends React.Component {
     },
     sources: null,
     articles: [],
-    suggestions: []
+    suggestions: [],
+    formActive: true
   }
 
   async componentDidMount() {
@@ -36,7 +37,10 @@ class Browse extends React.Component {
     const response = await getEverything(this.state.params)
     console.log(response)
 
-    this.setState({ articles: response.data.articles })
+    this.setState({ 
+      articles: response.data.articles, 
+      formActive: false
+    })
   }
 
   handleChange = (event) => {
@@ -81,10 +85,18 @@ class Browse extends React.Component {
   render() {
     return (
       <>
-        <Filter params={this.state.params} suggestions={this.state.suggestions} handleChange={this.handleChange} handleSubmit={this.handleSubmit} handleAutocomplete={this.handleAutocomplete} />
-        <div className="news-grid">
-          {this.state.articles.length > 0 && this.state.articles.map((article, i) => <NewsCard key={i} {...article}/> )}
-        </div>  
+        <div className="browse-outercontainer">
+          <Filter params={this.state.params} suggestions={this.state.suggestions} formActive={this.state.formActive} handleChange={this.handleChange} handleSubmit={this.handleSubmit} handleAutocomplete={this.handleAutocomplete} />
+          {!this.state.formActive && 
+          <div className="container column is-full box redisplay-form">
+            <div>Current filters: {this.state.params.}</div>
+            <button className="button is-primary is-active">Back to filters</button>
+          </div>
+          }
+          <div className="news-grid">
+            {this.state.articles.length > 0 && this.state.articles.map((article, i) => <NewsCard key={i} {...article}/> )}
+          </div>  
+        </div>
       </>
     )
   }
