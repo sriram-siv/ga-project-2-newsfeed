@@ -15,7 +15,7 @@ const NewsCard = ({ title, urlToImage, source, url, author }) => {
       <a onClick={goToLink}>
         {author && author.length < 20 && <p className='article-info'>Author: {author}</p>}
         <p className='article-info'>Source: { source.name }</p>
-        <p className='read-more'><a href={url} target="_blank" rel="noreferrer">Read more</a></p>
+        <p className='read-more'>Read more</p>
         <div className="shadow-2"></div>
         <div className="shadow-1"></div>
       </a>

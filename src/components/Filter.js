@@ -35,7 +35,7 @@ const Filter = ({ params, suggestions, formActive, handleChange, handleSubmit, h
         </div>
 
         <div className="field">
-          <button onSubmit={handleSubmit} type="submit" className="button is-fullwidth is-info">Submit</button>
+          <button onSubmit={handleSubmit} type="submit" className="button is-fullwidth submit-btn">Submit</button>
         </div>
       </form>
     </div>

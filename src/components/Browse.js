@@ -104,8 +104,15 @@ class Browse extends React.Component {
             handleAutocomplete={this.handleAutocomplete} />
           {!this.state.formActive && 
           <div className="container column is-full box redisplay-form">
-            <div>Current filters: {this.state.params.query}</div>
-            <button onClick={this.redisplayForm} className="button is-primary is-active">Back to filters</button>
+            <button onClick={this.redisplayForm} className="button is-fullwidth to-filters">Back to filters</button>
+            <div className="current-filters">
+              <h2>Current filters</h2>
+              <p>Click to save to your feed:</p> 
+              <div className="buttons are-small button-box">
+                {this.state.params.query && <button className="button add-feed">{this.state.params.query}+</button>}
+                {this.state.params.source && <button className="button add-feed">{this.state.params.source}+</button>}
+              </div>
+            </div>
           </div>
           }
           <div className="news-grid">
