@@ -7,7 +7,8 @@ class Browse extends React.Component {
   
   state = {
     params: {
-      query: 'brexit'
+      query: 'brexit',
+      source: ''
     },
 
     articles: []
@@ -34,6 +35,8 @@ class Browse extends React.Component {
     }
 
     this.setState({ params })
+
+    
   }
 
   render() {
@@ -63,8 +66,8 @@ class Browse extends React.Component {
                 <input
                   className="input"
                   placeholder="Source"
-                  name="query"
-                  value={this.state.params.query}
+                  name="source"
+                  value={this.state.params.source}
                   onChange={this.handleChange}
                 />
               </div>
