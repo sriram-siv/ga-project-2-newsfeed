@@ -21,7 +21,7 @@ class Browse extends React.Component {
   render() {
     return (
       <div className="news-grid">
-        {this.state.articles.map((article, i) => <NewsCard key={i} /> )}
+        {this.state.articles.map((article, i) => <NewsCard key={i} {...article}/> )}
       </div>
     )
   }
