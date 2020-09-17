@@ -1,8 +1,17 @@
 @import '~bulma/bulma.sass';
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,600;1,300&display=swap');
 
+
+*{
+  font-size: 20px;
+}
 body {
   font-family: 'Open Sans', sans-serif;
+}
+
+.intro-blurb {
+  text-align: center;
+  font-size: 1.5rem;
 }
 
 .news-grid {
@@ -21,6 +30,9 @@ body {
 }
 
 .news-card:hover {
+  // .news-card{
+  //   max-height: 300px;
+  // }
   img {
     opacity: 0;;
   }
@@ -31,6 +43,7 @@ body {
   p {
     top: -150px;
     opacity: 1;
+    color: blue;
   }
 }
 

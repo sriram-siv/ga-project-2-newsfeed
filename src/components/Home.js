@@ -52,8 +52,8 @@ class Home extends React.Component {
             <div className="container">
               <h1 className="title is-1 has-text-centered has-text-black">
                 News Feed
-                {/* <span role="img" aria-label="cheese emoji">🧀</span> */}
               </h1>
+              <p className="intro-blurb">Browse, create, currate<br/> Your own personalised news feed</p>
             </div>
           </div>
         </section>
