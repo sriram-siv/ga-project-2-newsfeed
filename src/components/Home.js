@@ -48,6 +48,7 @@ class Home extends React.Component {
             return (
               <>
                 <h3 className="keyword-heading">{keyword.query.toUpperCase()}</h3>
+                
                 <div className="keyword-section">
                   {keyword.articles.map((article, i) => <NewsCard key={i} {...article} />)}
                 </div>

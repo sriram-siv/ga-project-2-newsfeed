@@ -40,7 +40,7 @@ body {
   p {
     top: -150px;
     opacity: 1;
-    color: blue;
+    z-index: 100;
   }
 }
 
@@ -93,7 +93,7 @@ body {
 
 .keyword-section{
   text-align: center;
-  border-bottom: 1px solid black;
+  border-bottom: 1px solid grey;
 
   display: flex;
   flex-wrap: wrap;
