@@ -1,13 +1,36 @@
 @import '~bulma/bulma.sass';
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,600;1,300&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500&display=swap');
+
+
+
 
 body {
-  font-family: 'Open Sans', sans-serif;
+  // font-family: 'Open Sans', sans-serif;
+  font-family: 'Montserrat', sans-serif;
+}
+
+.navbar.is-dark {
+  // background-color: rgb(55, 187, 231);
+  background-color: #888;
+}
+
+.hero-body .container .title {
+  font-weight: 400;
+  font-size: 4.5em;
+  color: #333;
+}
+
+.hero-body {
+  background-image: linear-gradient(lightgreen,
+    lightgreen 8px, lightblue 7px, white 90%);
+  border-top: 10px solid lightpink;
 }
 
 .intro-blurb {
   text-align: center;
   font-size: 1.5rem;
+  color: #555;
 }
 
 .news-grid {
@@ -22,7 +45,8 @@ body {
   height: 300px;
   border: 2px solid lightpink;
 
-  margin: 25px;
+  margin: 15px;
+  background-color: white;
 }
 
 .news-card:hover {
@@ -122,19 +146,15 @@ body {
   cursor: pointer;
 }
 
-.keyword-section{
-  text-align: center;
-  border-bottom: 1px solid grey;
-
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-}
-
 .keyword-heading {
-  font-size: 2rem;
-  font-weight: bold;
-  padding-top: 20px;
+  font-size: 1.7rem;
+  font-weight: 300;
+  padding: 20px 100px 0;
+  width: 100%;
+
+  background-image: linear-gradient(white,
+    white 60%, lightgreen 59%, lightgreen 61%, white 60%,
+    white 70%, lightpink 69%, lightpink 71%, white 70%);
 }
 
 .form-container{

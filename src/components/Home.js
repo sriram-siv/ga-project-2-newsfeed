@@ -36,26 +36,21 @@ class Home extends React.Component {
         <section className={`hero is-info is-bold ${!this.state.keywords[0] ? 'is-fullheight-with-navbar' : ''}`}>
           <div className="hero-body">
             <div className="container">
-              <h1 className="title is-1 has-text-centered has-text-black">
+              <h1 className="title is-1 has-text-centered">
                 News Feed
               </h1>
-              <p className="intro-blurb">Browse, create, currate<br/> Your own personalised news feed</p>
+              <p className="intro-blurb">Browse, create, curate<br/> Your own personalised news feed</p>
             </div>
           </div>
         </section>
-        <div className="news-grid">
-          {this.state.keywords[0] && this.state.keywords.map(keyword => {
-            return (
-              <>
-                <h3 className="keyword-heading">{keyword.query.toUpperCase()}</h3>
-                
-                <div className="keyword-section">
-                  {keyword.articles.map((article, i) => <NewsCard key={i} {...article} />)}
-                </div>
-              </>
-            )
-          })}
-        </div>
+        {this.state.keywords[0] && this.state.keywords.map((keyword, i) => {
+          return (
+            <div className="news-grid" key={i}>
+              <h3 className="keyword-heading">{keyword.query.toUpperCase()}</h3>
+              {keyword.articles.map((article, i) => <NewsCard key={i} {...article} />)}
+            </div>
+          )
+        })}
       </>
     )
   }
