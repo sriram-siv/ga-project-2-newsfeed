@@ -11,6 +11,7 @@ const NewsCard = ({ title, description, urlToImage }) => {
       {urlToImage && <img src={urlToImage} alt="article" />}
       <h3>{title}</h3>
       <p>{ description }</p>
+      
       <div className="shadow-2"></div>
       <div className="shadow-1"></div>
     </div>

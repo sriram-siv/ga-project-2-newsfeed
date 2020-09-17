@@ -30,9 +30,6 @@ body {
 }
 
 .news-card:hover {
-  // .news-card{
-  //   max-height: 300px;
-  // }
   img {
     opacity: 0;;
   }
@@ -92,4 +89,19 @@ body {
 
 .news-card-no-img {
 
+}
+
+.keyword-section{
+  text-align: center;
+  border-bottom: 1px solid black;
+
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.keyword-heading{
+  font-size: 2rem;
+  font-weight: bold;
+  padding-top: 20px;
 }
