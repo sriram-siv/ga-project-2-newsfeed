@@ -1,1 +1,13 @@
 @import '~bulma/bulma.sass';
+
+.news-grid {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.news-card {
+  width: 200px;
+  height: 200px;
+  border-radius: 3px;
+  box-shadow: 1px 1px 3px lightgreen;
+}
