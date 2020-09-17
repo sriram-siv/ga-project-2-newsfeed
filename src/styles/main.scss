@@ -89,6 +89,10 @@ body {
   background-color: white;
 }
 
+.news-card-no-img {
+
+}
+
 .autocomplete {
   position: relative;
   display: inline-block;
@@ -115,4 +119,29 @@ body {
   font-size: 2rem;
   font-weight: bold;
   padding-top: 20px;
+}
+
+.form-container{
+  padding: 30px;
+}
+
+.browse-outercontainer{
+  position: relative;
+}
+
+
+.form-container.form-hide{
+  // display: none;
+  position: absolute;
+  transform: translateY(-100%);
+  transition-duration: 0.5s;
+  transition-timing-function: cubic-bezier(0.075, 0.82, 0.165, 1);
+  z-index: -1;
+  margin-bottom: 0;
+}
+
+.redisplay-form{
+  position: relative;
+  top: 0;
+
 }

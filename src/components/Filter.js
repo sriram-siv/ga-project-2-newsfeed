@@ -1,9 +1,9 @@
 import React from 'react'
 
-const Filter = ({ params, suggestions, handleChange, handleSubmit, handleAutocomplete }) => {
+const Filter = ({ params, suggestions, formActive, handleChange, handleSubmit, handleAutocomplete }) => {
   return (
-    <div className="columns">
-      <form onSubmit={handleSubmit} className="column is-half is-offset-one-quarter box" autoComplete="off">
+    <div className={`columns form-container ${formActive ? '' : 'form-hide'}`}>
+      <form onSubmit={handleSubmit} className="column is-full box" autoComplete="off">
         <div className="field">
           <label className="label">Keyword in Title</label>
           <div className="control">
