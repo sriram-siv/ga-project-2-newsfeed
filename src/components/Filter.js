@@ -1,9 +1,9 @@
 import React from 'react'
 
-const Filter = ({ params, suggestions, handleChange, handleSubmit }) => {
+const Filter = ({ params, suggestions, handleChange, handleSubmit, handleAutocomplete }) => {
   return (
     <div className="columns">
-      <form onSubmit={handleSubmit} className="column is-half is-offset-one-quarter box">
+      <form onSubmit={handleSubmit} className="column is-half is-offset-one-quarter box" autoComplete="off">
         <div className="field">
           <label className="label">Keyword in Title</label>
           <div className="control">
@@ -22,14 +22,16 @@ const Filter = ({ params, suggestions, handleChange, handleSubmit }) => {
             <input
               className="input"
               placeholder="Source"
-              name="source"
-              value={params.source}
+              name="sourceName"
+              value={params.sourceName}
               onChange={handleChange}
             />
-            <ul className="suggestions">
-              {suggestions.map(source => <li key={source} >{source}</li>)}
-            </ul>
           </div>
+          {suggestions && <div className="autcomplete">
+            {suggestions.map((item, i) => {
+              return <div className="autocomplete-item" key={i} onClick={handleAutocomplete}>{item}</div>
+            })}
+          </div>}
         </div>
 
         <div className="field">

@@ -8,36 +8,28 @@ class Browse extends React.Component {
   
   state = {
     params: {
-      query: 'brexit',
-      source: ''
+      query: '',
+      source: '',
+      sourceName: '' 
     },
-    sources: {},
+    sources: null,
     articles: [],
     suggestions: []
   }
 
   async componentDidMount() {
-    const articles = await getEverything(this.state.params)
-    const sources = await getSources()
-    console.log(articles)
-    console.log(sources)
-    this.setState({ articles: articles.data, sources: sources.data })
+    const response = await getSources()
+    this.setState({ sources: response.data.sources })
   }
 
 
-  findMatchingSources(wordSearched, object){
-    console.log(object.sources)
-    const matches = object.sources.filter(source => {
+  findMatchingSources(wordSearched) {
+    const matches = this.state.sources.filter(source => {
       const regex = new RegExp(wordSearched, 'i')
-      
       return source.id.match(regex) 
     })
     return matches
   }
-
-  // displayMatches() {
-  //   const matchesArray = 
-  // } 
 
   handleSubmit = async (event) => {
     event.preventDefault()
@@ -53,23 +45,43 @@ class Browse extends React.Component {
       [event.target.name]: event.target.value
     }
 
-    // this.setState({  })
-
-    const matchesArray = this.findMatchingSources(event.target.value, this.state.sources)
-    const newSuggestions = matchesArray.map(source => source.name)
+    let suggestions = this.state.suggestions
+    
+    if (event.target.name === 'sourceName' && this.state.sources) {
+      // TODO on change delete param id
+      // Error message -> no source matching tht name
+      const matchesArray = this.findMatchingSources(event.target.value)
+      suggestions = matchesArray.map(source => source.name)
+    }
     
     this.setState({
       params,
-      suggestions: newSuggestions
+      suggestions
     })
 
 
   }
 
+  handleAutocomplete = event => {
+    let id, name
+    for (let i = 0; i < this.state.sources.length; i++) {
+      if (this.state.sources[i].name === event.target.innerHTML) {
+        id = this.state.sources[i].id
+        name = this.state.sources[i].name
+      }
+    }
+    const params = {
+      ...this.state.params,
+      source: id,
+      sourceName: name
+    }
+    this.setState({ params, suggestions: [] })
+  }
+
   render() {
     return (
       <>
-        <Filter params={this.state.params} suggestions={this.state.suggestions} handleChange={this.handleChange} handleSubmit={this.handleSubmit} />
+        <Filter params={this.state.params} suggestions={this.state.suggestions} handleChange={this.handleChange} handleSubmit={this.handleSubmit} handleAutocomplete={this.handleAutocomplete} />
         <div className="news-grid">
           {this.state.articles.length > 0 && this.state.articles.map((article, i) => <NewsCard key={i} {...article}/> )}
         </div>  
