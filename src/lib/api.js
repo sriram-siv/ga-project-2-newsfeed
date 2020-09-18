@@ -1,7 +1,7 @@
 import axios from 'axios'
 
 const baseUrl = 'https://newsapi.org/v2'
-const apiKey = 'dae9c70dfb4c409f9e684bccc6a9355e'
+const apiKey = '9be5f7a0c56142638c29c8c773f91044'
 
 export const getEverything = params => {
 

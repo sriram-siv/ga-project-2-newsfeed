@@ -11,6 +11,22 @@ body {
   font-family: 'Montserrat', sans-serif;
 }
 
+.button {
+  border-radius: 1px;
+  border: 2px solid lightblue;
+  border-width: 2px 4px;
+  font-family: 'Montserrat', sans-serif;
+
+  &:hover {
+    background-color: #efe;
+    border-color: lightblue;
+  }
+
+  &:focus {
+    outline: 5px solid white;
+  }
+}
+
 .navbar.is-dark {
   // background-color: rgb(55, 187, 231);
   background-color: #888;
@@ -160,6 +176,10 @@ body {
 .input {
   border-radius: 1px;
   border: 1px solid lightblue;
+
+  &:focus, &:active, &:hover {
+    border: 2px solid lightgreen;
+  }
 }
 
 .autocomplete-item {
@@ -193,10 +213,16 @@ body {
 
 .form-container{
   padding: 30px;
+  overflow-y: hidden;
+  height: 16.5em;
+  background-image: linear-gradient(lightblue, white 100%);
 }
 
-.form-display{
-  background-color: white;
+.query-form {
+  transition: all 1s;
+  overflow: hidden;
+  padding: 0;
+  box-shadow: none;
 }
 
 .label{
@@ -206,31 +232,6 @@ body {
 .submit-btn,
 .to-filters{
   color: #333;
-}
-
-form.box{
-  box-shadow: none;
-
-  border: 2px solid lightgreen;
-  border-radius: 5px;
-  box-shadow: 0 0 0 4px lightblue,
-  0 0 0 7px  lightpink;
-}
-
-.browse-outercontainer{
-  // position: relative;
-  // height: calc(100vh - 52px);
-  // transition: all 1s;
-  // transition-timing-function: ease-in-out;
-}
-
-.form-container.form-hide{
-  display: none;
-  // position: absolute;
-  // transform: translateY(-100%);
-  // transition-duration: 3s;
-  // z-index: -1;
-  // margin-bottom: 0;
 }
 
 .redisplay-form{
@@ -255,11 +256,11 @@ form.box{
   }
 }
 
-.to-filters{
-  display: inline-block;
-  font-weight: bold;
-  border: 3px solid lightpink;
-}
+// .to-filters{
+//   display: inline-block;
+//   font-weight: bold;
+//   border: 3px solid lightpink;
+// }
 
 .add-feed{
   border: 3px solid lightgreen;
@@ -280,8 +281,10 @@ form.box{
  text-align: center;
  padding: 20px 0;
  color: #888;
- border-top: 3px solid lightgreen;
- border-bottom: 3px solid lightpink;
+
+ background-image: linear-gradient(rgba(255,255,255,0),
+    rgba(255,255,255,0) 40%, lightgreen 39%, lightgreen 41%, rgba(255,255,255,0) 40%,
+    rgba(255,255,255,0) 50%, lightpink 49%, lightpink 51%, rgba(255,255,255,0) 50%);
 }
 
 .nav-item{

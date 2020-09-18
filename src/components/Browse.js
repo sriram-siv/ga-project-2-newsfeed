@@ -16,57 +16,56 @@ class Browse extends React.Component {
     },
     sources: null,
     articles: [],
-    suggestions: [],
+    suggestions: '',
     formActive: true
   }
 
   async componentDidMount() {
     const response = await getSources()
     this.setState({ sources: response.data.sources })
-
   }
-  
   
   findMatchingSources(wordSearched) {
     const matches = this.state.sources.filter(source => {
       const split = wordSearched.split(' ')
       return split.every(word => source.id.match(new RegExp(word, 'i')))
       
-      wordSearched.replace(' ', '\s')
+      // wordSearched.replace(' ', '\s')
     })
     return matches
   }
   
   handleSubmit = async (event) => {
+    event.preventDefault()
+    this.toggleForm(false)
 
     // TODO Show error message to user
     if (this.state.params.sourceName !== '' && this.state.params.source === '') {
       console.log('no source matching..')
     }
 
-    event.preventDefault()
     const response = await getEverything(this.state.params)
     console.log(response)
     this.setState({ 
-      articles: response.data.articles, 
-      formActive: false
+      articles: response.data.articles
     })
   }
 
-  redisplayForm = () => {
+  toggleForm = (state) => {
+    console.log('togggggle')
     this.setState({
-      formActive: true
+      formActive: state
     })
   }
 
   handleChange = (event) => {
+
     const params = {
       ...this.state.params,
       [event.target.name]: event.target.value
     }
-
-    let suggestions = this.state.suggestions
     
+    let suggestions = this.state.suggestions
     if (event.target.name === 'sourceName' && this.state.sources) {
       // Remove matched source if user edits the input field
       params.source = ''
@@ -74,7 +73,7 @@ class Browse extends React.Component {
       suggestions = matchesArray.map(source => source.name)
 
       if (!event.target.value){
-        suggestions = null
+        suggestions = ''
       }
     }
     
@@ -82,12 +81,11 @@ class Browse extends React.Component {
       params,
       suggestions
     })
-
-
   }
 
   handleAutocomplete = event => {
     let id, name
+    // Find matching object in sources and save id and name to params
     for (let i = 0; i < this.state.sources.length; i++) {
       if (this.state.sources[i].name === event.target.innerHTML) {
         id = this.state.sources[i].id
@@ -99,16 +97,17 @@ class Browse extends React.Component {
       source: id,
       sourceName: name
     }
-    this.setState({ params, suggestions: [] })
+    this.setState({ params, suggestions: '' })
   }
 
+  // Hide autocomplete when input loses focus
   handleBlur = () => {
-    this.setState({ suggestions: null })
+    // On delay timer so that it doesnt prevent onClick from firing on the item
+    setTimeout(() => this.setState({ suggestions: null }), 50)
   }
 
-  addToFeed = (param) => {
+  addToFeed = param => {
     if (param === 'query') saveKeyword(this.state.params.query)
-
     popupNotification('Added in Feed')
   }
 
@@ -123,37 +122,10 @@ class Browse extends React.Component {
             handleChange={this.handleChange}
             handleSubmit={this.handleSubmit}
             handleAutocomplete={this.handleAutocomplete}
-            handleBlur={this.handleBlur} />
-          {!this.state.formActive && 
-          <div className={`columns form-container 
-            ${this.state.formActive ? 'form-nondisplay' : 'form-display'}`}
-          >
-            <div className="column is-full box redisplay-form"
-              autoComplete="off">
-              <button onClick={this.redisplayForm} 
-                className="button is-fullwidth to-filters">
-                  BACK TO FILTERS
-              </button>
-              <div className="current-filters">
-                <h2>Current filters</h2>
-                <div className="buttons are-small button-box">
-                  {this.state.params.query &&
-                    <>
-                      <p>{this.state.params.query}</p>
-                      <button className="button add-feed" onClick={() => this.addToFeed('query')}>ADD TO FEED</button>
-                      <br />
-                    </>
-                  }
-                  {/* {this.state.params.source && <button className="button add-feed">{this.state.params.source}+</button>} */}
-                </div>
-              </div>
-            </div>
-          </div>
-          }
-          {/* <div className={`${(this.state.articles.length === 0) ?
-            'loading active' : 'loading'}`}>
-            {`${this.state.articles.length} ${this.state.formActive}`}
-            LOADING</div> */}
+            handleBlur={this.handleBlur}
+            toggleForm={this.toggleForm}
+            addToFeed={this.addToFeed} />
+          
         </div>
         <div className="news-grid">
           {this.state.articles.length > 0 && this.state.articles.map((article, i) => <NewsCard key={i} {...article}/> )}
