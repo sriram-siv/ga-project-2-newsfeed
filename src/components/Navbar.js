@@ -7,8 +7,8 @@ const Navbar = () => {
     <nav className="navbar is-dark">
       <div className="container">
         <div className="navbar-brand">
-          <Link to="/" className="navbar-item">Home</Link>
-          <Link to="/browse" className="navbar-item">Browse</Link>
+          <Link to="/" className="navbar-item">FEED</Link>
+          <Link to="/browse" className="navbar-item">BROWSE</Link>
         </div>
         <div className="navbar-end">
 

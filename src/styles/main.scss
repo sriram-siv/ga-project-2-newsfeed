@@ -175,34 +175,46 @@ body {
     white 70%, lightpink 69%, lightpink 71%, white 70%);
 }
 
+
+//Start of Filter and Browse section
+
 .form-container{
   padding: 30px;
 }
 
+.form-display{
+  background-color: white;
+}
+
+
 form.box{
   box-shadow: none;
-  border: 3px solid lightgreen;
-  border-radius: 10px;
-  box-shadow: 0 0 0 5px lightpink,
-  0 0 0 10px  lightblue;
+
+  border: 2px solid lightgreen;
+  border-radius: 5px;
+  box-shadow: 0 0 0 4px lightblue,
+  0 0 0 7px  lightpink;
 }
 
 .browse-outercontainer{
   position: relative;
 }
 
-
 .form-container.form-hide{
-  position: absolute;
-  transform: translateY(-100%);
-  transition-duration: 3s;
-  z-index: -1;
-  margin-bottom: 0;
+  display: none;
+  // position: absolute;
+  // transform: translateY(-100%);
+  // transition-duration: 3s;
+  // z-index: -1;
+  // margin-bottom: 0;
 }
 
 .redisplay-form{
   position: relative;
   top: 0;
+  border: 1px solid lightgreen;
+  border-radius: 10px;
+  box-shadow: 0 0 0 3px  lightblue;
 }
 
 .current-filters{
@@ -235,6 +247,15 @@ form.box{
   font-weight: bold;
 }
 
+.outer-newsgrid{
+  height: calc(100vh - 52px);
+  transition: all 1s;
+  transition-timing-function: ease-in-out;
+}
+
+//END of Filter and Browse Section
+
+
 .feed-empty{
  margin-top: 40px;
  text-align: center;
@@ -242,4 +263,8 @@ form.box{
  color: #888;
  border-top: 3px solid lightgreen;
  border-bottom: 3px solid lightpink;
+}
+
+.navbar-item{
+  margin: 3px;
 }

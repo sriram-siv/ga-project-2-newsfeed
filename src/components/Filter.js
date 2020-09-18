@@ -3,7 +3,9 @@ import React from 'react'
 const Filter = ({ params, suggestions, formActive, handleChange, handleSubmit, handleAutocomplete }) => {
   return (
     <div className={`columns form-container ${formActive ? '' : 'form-hide'}`}>
-      <form onSubmit={handleSubmit} className="column is-full box" autoComplete="off">
+      <form onSubmit={handleSubmit}
+        className="column is-full box"
+        autoComplete="off">
         <div className="field">
           <label className="label">Keyword in Title</label>
           <div className="control">
@@ -35,7 +37,9 @@ const Filter = ({ params, suggestions, formActive, handleChange, handleSubmit, h
         </div>
 
         <div className="field">
-          <button onSubmit={handleSubmit} type="submit" className="button is-fullwidth submit-btn">Submit</button>
+          <button onSubmit={handleSubmit}
+            type="submit" 
+            className="button is-fullwidth submit-btn">SEARCH NEWS</button>
         </div>
       </form>
     </div>

@@ -23,6 +23,11 @@ class Browse extends React.Component {
   async componentDidMount() {
     const response = await getSources()
     this.setState({ sources: response.data.sources })
+
+    // const outerNewsGrid = document.querySelector('.outer-newsgrid')
+    // outerNewsGrid.style.height = '270px'
+    const loading = document.querySelector('.loading')
+    loading.style.opacity = '0'
   }
 
 
@@ -97,7 +102,7 @@ class Browse extends React.Component {
   addToFeed = (param) => {
     if (param === 'query') saveKeyword(this.state.params.query)
 
-    popupNotification('Added to feed')
+    popupNotification('Added in Feed')
   }
 
   render() {
@@ -111,28 +116,41 @@ class Browse extends React.Component {
             handleSubmit={this.handleSubmit} 
             handleAutocomplete={this.handleAutocomplete} />
           {!this.state.formActive && 
-          <div className="container column is-full box redisplay-form">
-            <button onClick={this.redisplayForm} 
-              className="button is-fullwidth to-filters">
-                Back to filters
-            </button>
-            <div className="current-filters">
-              <h2>Current filters</h2>
-              <div className="buttons are-small button-box">
-                {this.state.params.query &&
-                  <>
-                    <p>{this.state.params.query}</p>
-                    <button className="button add-feed" onClick={() => this.addToFeed('query')}>ADD TO FEED</button>
-                    <br />
-                  </>
-                }
-                {/* {this.state.params.source && <button className="button add-feed">{this.state.params.source}+</button>} */}
+          <div className={`columns form-container 
+            ${this.state.formActive ? 'form-nondisplay' : 'form-display'}`}
+          >
+            <div className="column is-full box redisplay-form"
+              autoComplete="off">
+              <button onClick={this.redisplayForm} 
+                className="button is-fullwidth to-filters">
+                  BACK TO FILTERS
+              </button>
+              <div className="current-filters">
+                <h2>Current filters</h2>
+                <div className="buttons are-small button-box">
+                  {this.state.params.query &&
+                    <>
+                      <p>{this.state.params.query}</p>
+                      <button className="button add-feed" onClick={() => this.addToFeed('query')}>ADD TO FEED</button>
+                      <br />
+                    </>
+                  }
+                  {/* {this.state.params.source && <button className="button add-feed">{this.state.params.source}+</button>} */}
+                </div>
               </div>
             </div>
           </div>
           }
-          <div className="news-grid">
-            {this.state.articles.length > 0 && this.state.articles.map((article, i) => <NewsCard key={i} {...article}/> )}
+          <div className="outer-newsgrid">
+            <div className="loading">
+              LOADING
+              {/* {!this.state.articles.length &&
+              !this.state.formActive && */}
+              {/* } */}
+            </div>
+            <div className="news-grid">
+              {this.state.articles.length > 0 && this.state.articles.map((article, i) => <NewsCard key={i} {...article}/> )}
+            </div>
           </div>  
         </div>
       </>
