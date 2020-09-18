@@ -39,7 +39,7 @@ class Browse extends React.Component {
     event.preventDefault()
     const response = await getEverything(this.state.params)
     console.log(response)
-    // Error message -> no source matching tht name
+    // TODO Error message -> no source matching tht name
     this.setState({ 
       articles: response.data.articles, 
       formActive: false
@@ -109,6 +109,7 @@ class Browse extends React.Component {
   render() {
     return (
       <>
+        <div className="header"></div>
         <div className="browse-outercontainer">
           <Filter params={this.state.params} 
             suggestions={this.state.suggestions} 

@@ -28,21 +28,31 @@ body {
   color: #333;
 }
 
-.hero-body {
-  background-image: linear-gradient(lightgreen,
-    lightgreen 8px, lightblue 7px, white 90%);
-  border-top: 10px solid lightpink;
+#hero-loading {
+  height: 270px;
+}
+
+.header {
+  background-image: linear-gradient(lightpink,
+    lightpink 10px, lightgreen 9px,
+    lightgreen 17px, lightblue 16px, white 90%);
+  border-top: 5px solid white;
   padding-right: 0;
   padding-left: 0; 
+  min-height: 20px;
 }
 
 .loading {
   margin-top: 100px;
-  opacity: 1;
+  opacity: 0;
   transition: all 1s;
   color: #555;
   text-align: center;
   font-size: 1.2em;
+}
+
+#is-loading {
+  opacity: 1;
 }
 
 .intro-blurb {
@@ -170,9 +180,9 @@ body {
   padding: 20px 100px 0;
   width: 100%;
 
-  background-image: linear-gradient(white,
-    white 60%, lightgreen 59%, lightgreen 61%, white 60%,
-    white 70%, lightpink 69%, lightpink 71%, white 70%);
+  background-image: linear-gradient(rgba(255,255,255,0),
+    rgba(255,255,255,0) 60%, lightgreen 59%, lightgreen 61%, rgba(255,255,255,0) 60%,
+    rgba(255,255,255,0) 70%, lightpink 69%, lightpink 71%, rgba(255,255,255,0) 70%);
 }
 
 
@@ -263,6 +273,32 @@ form.box{
  border-bottom: 3px solid lightpink;
 }
 
-.navbar-item{
-  margin: 3px;
+.nav-item{
+  color: white;
+  padding: 15px 15px;
+
+  &:hover {
+    background-color: white;
+    color: #555;
+  }
+
+  &:first-of-type {
+    margin-left: 40px;
+  }
+}
+
+.is-selected {
+  background-color: white;
+  color: #555;
+}
+
+.logo-container {
+  position: relative;
+}
+
+.logo {
+  width: 45px;
+  position: absolute;
+  right: 20px;
+  top: 4px;
 }

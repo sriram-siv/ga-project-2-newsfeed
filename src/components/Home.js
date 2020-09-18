@@ -7,19 +7,15 @@ import NewsCard from './NewsCard'
 class Home extends React.Component {
 
   state = {
-    keywords: []
+    keywords: [],
+    loading: true
   }
 
   async componentDidMount() {
     const keywords = getKeywords()
     if (!keywords) return
     const keywordsObj = await this.getArticles(keywords)
-    this.setState({ keywords: keywordsObj })
-
-    const hero = document.querySelector('.hero')
-    hero.style.height = '270px'
-    const loading = document.querySelector('.loading')
-    loading.style.opacity = '0'
+    this.setState({ keywords: keywordsObj, loading: false })
   }
 
   async getArticles(keywords) {
@@ -39,18 +35,18 @@ class Home extends React.Component {
     const keywordsStored = getKeywords()
     return (
       <>
-        <section className='hero is-info is-bold'>
-          <div className="hero-body">
+        <section className='hero is-info is-bold' id={`${this.state.loading ? '' : 'hero-loading'}`}>
+          <div className="hero-body header">
             <div className="container">
               <h1 className="title is-1 has-text-centered">
                 News Feed
               </h1>
-              <p className="intro-blurb">Browse, create, curate<br/> Your own personalised news feed</p>
+              <p className="intro-blurb">Browse, create, curate<br /> Your own personalised news feed</p>
             </div>
             {!keywordsStored && <div className="feed-empty">
               <h3>Your feed is empty right now <br/>Browse to add</h3>
             </div>}
-            { keywordsStored && <div className="loading">LOADING</div>}
+            { keywordsStored && <div className="loading" id={`${this.state.loading ? 'is-loading' : ''}`}>LOADING</div>}
           </div>
         </section>
         {this.state.keywords[0] && this.state.keywords.map((keyword, i) => {
