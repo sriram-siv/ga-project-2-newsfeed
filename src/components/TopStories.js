@@ -28,13 +28,11 @@ class TopStories extends React.Component{
         <div className="header"></div>
         <div className="navbar topstory-nav form-container" role="navigation" aria-label="sub navigation">
           <div className="navbar-brand">
-            {/* <h3 className="keyword-heading"> */}
             <button onClick={this.handleClick} className="button is-large">Business</button>
             <button onClick={this.handleClick} className="button is-large">Technology</button>
             <button onClick={this.handleClick} className="button is-large">Entertainment</button>
             <button onClick={this.handleClick} className="button is-large">Health</button>
             <button onClick={this.handleClick} className="button is-large">Sport</button>
-            {/* </h3> */}
           </div>
         </div>
         <div className='outer-top-stories'>
@@ -44,7 +42,6 @@ class TopStories extends React.Component{
         </div> 
       </>
     )
-
   }
 
 
