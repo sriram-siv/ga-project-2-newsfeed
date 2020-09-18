@@ -31,6 +31,8 @@ class Browse extends React.Component {
     const matches = this.state.sources.filter(source => {
       const split = wordSearched.split(' ')
       return split.every(word => source.id.match(new RegExp(word, 'i')))
+      
+      wordSearched.replace(' ', '\s')
     })
     return matches
   }
@@ -49,11 +51,6 @@ class Browse extends React.Component {
       articles: response.data.articles, 
       formActive: false
     })
-    
-    // const outerBrowseContainer = document.querySelector('.browse-outercontainer')
-    // outerBrowseContainer.style.height = '300px'
-    // const loading = document.querySelector('.loading')
-    // loading.style.opacity = '1'
   }
 
   redisplayForm = () => {
@@ -105,6 +102,10 @@ class Browse extends React.Component {
     this.setState({ params, suggestions: [] })
   }
 
+  handleBlur = () => {
+    this.setState({ suggestions: null })
+  }
+
   addToFeed = (param) => {
     if (param === 'query') saveKeyword(this.state.params.query)
 
@@ -116,12 +117,13 @@ class Browse extends React.Component {
       <>
         <div className="header"></div>
         <div className="browse-outercontainer">
-          <Filter params={this.state.params} 
-            suggestions={this.state.suggestions} 
-            formActive={this.state.formActive} 
-            handleChange={this.handleChange} 
-            handleSubmit={this.handleSubmit} 
-            handleAutocomplete={this.handleAutocomplete} />
+          <Filter params={this.state.params}
+            suggestions={this.state.suggestions}
+            formActive={this.state.formActive}
+            handleChange={this.handleChange}
+            handleSubmit={this.handleSubmit}
+            handleAutocomplete={this.handleAutocomplete}
+            handleBlur={this.handleBlur} />
           {!this.state.formActive && 
           <div className={`columns form-container 
             ${this.state.formActive ? 'form-nondisplay' : 'form-display'}`}

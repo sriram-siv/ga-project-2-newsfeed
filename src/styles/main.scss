@@ -162,21 +162,19 @@ body {
   border: 1px solid lightblue;
 }
 
-.autocomplete {
-  position: relative;
-  display: inline;
-  background-color: red;
-}
-
 .autocomplete-item {
   font-size: small;
-  margin: 3px 5px;
-  border: 1px solid lightblue;
-  opacity: 0.5;
+  padding: 10px;
+  color: #555;
+
+  &:hover {
+    background-color: white;
+    cursor: pointer;
+  }
 }
 
-.autocomplete-item:hover{
-  cursor: pointer;
+.autocomplete-container {
+  position: relative;
 }
 
 .keyword-heading {
