@@ -7,11 +7,11 @@ const Filter = ({ params, suggestions, formActive, handleChange, handleSubmit, h
         className="column is-full box"
         autoComplete="off">
         <div className="field">
-          <label className="label">Keyword in Title</label>
+          <label className="label">Keyword</label>
           <div className="control">
             <input
               className="input"
-              placeholder="Title"
+              placeholder="Keyword"
               name='query'
               value={params.query}
               onChange={handleChange}
