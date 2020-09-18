@@ -198,6 +198,9 @@ form.box{
 
 .browse-outercontainer{
   position: relative;
+  height: calc(100vh - 52px);
+  transition: all 1s;
+  transition-timing-function: ease-in-out;
 }
 
 .form-container.form-hide{
@@ -247,11 +250,6 @@ form.box{
   font-weight: bold;
 }
 
-.outer-newsgrid{
-  height: calc(100vh - 52px);
-  transition: all 1s;
-  transition-timing-function: ease-in-out;
-}
 
 //END of Filter and Browse Section
 

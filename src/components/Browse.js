@@ -24,13 +24,9 @@ class Browse extends React.Component {
     const response = await getSources()
     this.setState({ sources: response.data.sources })
 
-    // const outerNewsGrid = document.querySelector('.outer-newsgrid')
-    // outerNewsGrid.style.height = '270px'
-    const loading = document.querySelector('.loading')
-    loading.style.opacity = '0'
   }
-
-
+  
+  
   findMatchingSources(wordSearched) {
     const matches = this.state.sources.filter(source => {
       const regex = new RegExp(wordSearched, 'i')
@@ -38,7 +34,7 @@ class Browse extends React.Component {
     })
     return matches
   }
-
+  
   handleSubmit = async (event) => {
     event.preventDefault()
     const response = await getEverything(this.state.params)
@@ -48,6 +44,11 @@ class Browse extends React.Component {
       articles: response.data.articles, 
       formActive: false
     })
+    
+    const outerBrowseContainer = document.querySelector('.browse-outercontainer')
+    outerBrowseContainer.style.height = '300px'
+    const loading = document.querySelector('.loading')
+    loading.style.opacity = '1'
   }
 
   redisplayForm = () => {
@@ -141,18 +142,12 @@ class Browse extends React.Component {
             </div>
           </div>
           }
-          <div className="outer-newsgrid">
-            <div className="loading">
-              LOADING
-              {/* {!this.state.articles.length &&
-              !this.state.formActive && */}
-              {/* } */}
-            </div>
-            <div className="news-grid">
-              {this.state.articles.length > 0 && this.state.articles.map((article, i) => <NewsCard key={i} {...article}/> )}
-            </div>
-          </div>  
+          <div className={`${this.state.articles ? 'loading' : 'loading'} `}>LOADING</div>
         </div>
+        <div className="news-grid">
+          {this.state.articles.length > 0 && this.state.articles.map((article, i) => <NewsCard key={i} {...article}/> )}
+        </div>
+
       </>
     )
   }
