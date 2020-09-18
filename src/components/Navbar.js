@@ -22,6 +22,7 @@ class Navbar extends React.Component {
           <div className="navbar-brand">
             <Link to="/" className={`nav-item ${selected === 'feed' ? 'is-selected' : ''}`} onClick={this.selectNavItem}>FEED</Link>
             <Link to="/browse" className={`nav-item ${selected === 'browse' ? 'is-selected' : ''}`} onClick={this.selectNavItem}>BROWSE</Link>
+            <Link to="/top-stories" className="navbar-item">TOP STORIES</Link>
           </div>
         </div>
 
@@ -32,3 +33,6 @@ class Navbar extends React.Component {
 }
 
 export default Navbar
+
+
+
