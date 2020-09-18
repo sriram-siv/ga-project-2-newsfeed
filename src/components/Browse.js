@@ -45,10 +45,10 @@ class Browse extends React.Component {
       formActive: false
     })
     
-    const outerBrowseContainer = document.querySelector('.browse-outercontainer')
-    outerBrowseContainer.style.height = '300px'
-    const loading = document.querySelector('.loading')
-    loading.style.opacity = '1'
+    // const outerBrowseContainer = document.querySelector('.browse-outercontainer')
+    // outerBrowseContainer.style.height = '300px'
+    // const loading = document.querySelector('.loading')
+    // loading.style.opacity = '1'
   }
 
   redisplayForm = () => {
@@ -142,7 +142,10 @@ class Browse extends React.Component {
             </div>
           </div>
           }
-          <div className={`${this.state.articles ? 'loading' : 'loading'} `}>LOADING</div>
+          {/* <div className={`${(this.state.articles.length === 0) ?
+            'loading active' : 'loading'}`}>
+            {`${this.state.articles.length} ${this.state.formActive}`}
+            LOADING</div> */}
         </div>
         <div className="news-grid">
           {this.state.articles.length > 0 && this.state.articles.map((article, i) => <NewsCard key={i} {...article}/> )}
