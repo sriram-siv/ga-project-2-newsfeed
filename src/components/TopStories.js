@@ -9,11 +9,6 @@ class TopStories extends React.Component{
   }
 
   componentDidMount() {
-    // const response = await getTopStories()
-
-    // this.setState({
-    //   stories: response.data
-    // })
 
   }
 
@@ -23,24 +18,22 @@ class TopStories extends React.Component{
     this.setState({
       stories: response.data
     })
-
-    setTimeout(() => console.log(this.state.stories), 3000)
     
   }
 
   render(){
     
-    // if (!this.state.stories) return null
     return (
       <>
-        <div>
-          <h3 className="keyword-heading">
+        <div className="header"></div>
+        <div className="navbar topstory-nav form-container" role="navigation" aria-label="sub navigation">
+          <div className="navbar-brand">
             <button onClick={this.handleClick} className="button is-large">Business</button>
             <button onClick={this.handleClick} className="button is-large">Technology</button>
             <button onClick={this.handleClick} className="button is-large">Entertainment</button>
             <button onClick={this.handleClick} className="button is-large">Health</button>
             <button onClick={this.handleClick} className="button is-large">Sport</button>
-          </h3>
+          </div>
         </div>
         <div className='outer-top-stories'>
           <div className="news-grid">
@@ -49,7 +42,6 @@ class TopStories extends React.Component{
         </div> 
       </>
     )
-
   }
 
 

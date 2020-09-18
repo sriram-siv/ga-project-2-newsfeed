@@ -30,7 +30,7 @@ export const getSources = () => {
 }
 
 export const getTopStories = (category) => {
-  const pageSize = '&pageSize=5'
+  const pageSize = '&pageSize=15'
   let response
   if (category === 'Business'){
     response = axios.get(`${baseUrl}/top-headlines?category=business${pageSize}&apiKey=${apiKey}`)
@@ -43,12 +43,7 @@ export const getTopStories = (category) => {
   } else {
     response = axios.get(`${baseUrl}/top-headlines?category=sport${pageSize}&apiKey=${apiKey}`)
   }
-  // const business = axios.get(`${baseUrl}/top-headlines?category='Business'${pageSize}&apiKey=${apiKey}`)
-  // const tech = axios.get(`${baseUrl}/top-headlines?category=${categories[1]}${pageSize}&apiKey=${apiKey}`)
-  // const entertainment = axios.get(`${baseUrl}/top-headlines?category=${categories[2]}${pageSize}&apiKey=${apiKey}`)
-  // const health = axios.get(`${baseUrl}/top-headlines?category=${categories[3]}${pageSize}&apiKey=${apiKey}`)
-  // const sport = axios.get(`${baseUrl}/top-headlines?category=${categories[4]}${pageSize}&apiKey=${apiKey}`)
-
+  
   return response
 
 }
