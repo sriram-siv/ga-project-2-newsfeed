@@ -1,6 +1,6 @@
 import React from 'react'
 import { getEverything, getSources } from '../lib/api'
-import { saveKeyword } from '../lib/feed'
+import { saveKeyword, saveSource } from '../lib/feed'
 import { popupNotification } from '../lib/notifications'
 
 import NewsCard from './NewsCard'
@@ -26,23 +26,26 @@ class Browse extends React.Component {
   }
   
   findMatchingSources(wordSearched) {
+    
     const matches = this.state.sources.filter(source => {
+      // Remove illegal regex characters
+      const illegalChars = ['(', ')', '[', ']']
+      illegalChars.map(char => wordSearched = wordSearched.replaceAll(char, ''))
+      
       const split = wordSearched.split(' ')
       return split.every(word => source.id.match(new RegExp(word, 'i')))
-      
-      // wordSearched.replace(' ', '\s')
     })
     return matches
   }
   
   handleSubmit = async (event) => {
     event.preventDefault()
-    this.toggleForm(false)
-
-    // TODO Show error message to user
+    // Show error message to user if invalid source
     if (this.state.params.sourceName !== '' && this.state.params.source === '') {
-      console.log('no source matching..')
+      popupNotification('No source matching that name')
+      return
     }
+    this.toggleForm(false)
 
     const response = await getEverything(this.state.params)
     console.log(response)
@@ -108,6 +111,8 @@ class Browse extends React.Component {
 
   addToFeed = param => {
     if (param === 'query') saveKeyword(this.state.params.query)
+    if (param === 'source') saveSource(this.state.params.source)
+    
     popupNotification('Added in Feed')
   }
 

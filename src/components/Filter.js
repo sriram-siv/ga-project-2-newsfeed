@@ -1,4 +1,5 @@
 import React from 'react'
+import image from '../images/feed.jpg'
 
 const Filter = ({ params, suggestions, formActive, handleChange, handleSubmit, handleAutocomplete, handleBlur, toggleForm, addToFeed }) => {
   
@@ -51,12 +52,6 @@ const Filter = ({ params, suggestions, formActive, handleChange, handleSubmit, h
                   onBlur={handleBlur}
                 />
               </div>
-              {/* {suggestions &&
-              <div style={style}>
-                {suggestions.map((item, i) => {
-                  return <div className="autocomplete-item" key={i} onClick={handleAutocomplete}>{item}</div>
-                })}
-              </div>} */}
             </div>
 
             <div className="field">
@@ -67,25 +62,20 @@ const Filter = ({ params, suggestions, formActive, handleChange, handleSubmit, h
           </form>
         </div>
         {/* ONLY DISPLAY THIS DIV WHEN FORM REDUCES TO 0 HEIGHT */}
-        <div className=" form-container">
-          <div className="column is-full box query-form"
-            autoComplete="off">
-            <button onClick={() => toggleForm(true)} 
-              className="button is-fullwidth to-filters">
-                BACK TO FILTERS
-            </button>
-            <div className="current-filters">
-              <h2>Current filters</h2>
-              <div className="buttons are-small button-box">
-                {params.query &&
-                  <>
-                    <p>{params.query}</p>
-                    <button className="button add-feed" onClick={() => addToFeed('query')}>ADD TO FEED</button>
-                    <br />
-                  </>
-                }
-                {/* {this.state.params.source && <button className="button add-feed">{this.state.params.source}+</button>} */}
-              </div>
+        <div className="column is-full query-form">
+          <button onClick={() => toggleForm(true)} 
+            className="button is-fullwidth to-filters">
+              BACK TO FILTERS
+          </button>
+          <div className="current-filters">
+            <h2>Current filters</h2>
+            <div className="buttons are-small button-box">
+              {params.query &&
+                <button className="button add-feed" onClick={() => addToFeed('query')}>{params.query}<span>&nbsp;<img src={image} /></span></button>
+              }
+              {params.source &&
+                <button className="button add-feed" onClick={() => addToFeed('source')}>{params.sourceName}<span>&nbsp;<img src={image}/></span></button>
+              }
             </div>
           </div>
         </div>

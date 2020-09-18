@@ -12,3 +12,18 @@ export const getKeywords = () => {
   if (list) return list.split(',')
   return null
 }
+
+export const saveSource = (source) => {
+  let list = localStorage.getItem('savedSources')
+  if (!list) list = source
+  else if (!list.split(',').includes(source)) {
+    list = `${list},${source}`
+  }
+  localStorage.setItem('savedSources', list)
+}
+
+export const getSources = () => {
+  const list = localStorage.getItem('savedSources')
+  if (list) return list.split(',')
+  return null
+}

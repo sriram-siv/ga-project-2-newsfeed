@@ -256,15 +256,24 @@ body {
   }
 }
 
-// .to-filters{
-//   display: inline-block;
-//   font-weight: bold;
-//   border: 3px solid lightpink;
-// }
-
 .add-feed{
-  border: 3px solid lightgreen;
+  border: 2px solid lightgreen;
   border-radius: 2px;
+  text-transform: uppercase;
+
+  span {
+    width: 0;
+    overflow: hidden;
+    transition: margin-left 1s;
+  }
+
+  &:hover {
+    span {
+      width: auto;
+      margin-left: 15px;
+      margin-top: 2px;
+    }
+  }
 }
 
 .submit-btn{

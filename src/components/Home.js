@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { getKeywords } from '../lib/feed'
+import { getKeywords, getSources } from '../lib/feed'
 import { getEverything } from '../lib/api'
 import NewsCard from './NewsCard'
 
@@ -8,26 +8,39 @@ class Home extends React.Component {
 
   state = {
     keywords: [],
+    sources: [],
     loading: true
   }
 
   async componentDidMount() {
     const keywords = getKeywords()
-    if (!keywords) return
-    const keywordsObj = await this.getArticles(keywords)
-    this.setState({ keywords: keywordsObj, loading: false })
+    if (keywords) {
+      const keywordsObj = await this.getArticles(keywords, 'query')
+      this.setState({ keywords: keywordsObj })
+    }
+    const sources = getSources()
+    if (sources) {
+      const sourcesObj = await this.getArticles(sources, 'source')
+      this.setState({ sources: sourcesObj, loading: false })
+    }
   }
 
-  async getArticles(keywords) {
+  async getArticles(param, type) {
 
-    const keywordsObj = []
+    const queryObj = []
+
     
-    for (let i = 0; i < keywords.length; i++) {
-      const response = await getEverything({ query: keywords[i], pageSize: 5 })
-      keywordsObj.push({ query: keywords[i], articles: response.data.articles })
+    
+    for (let i = 0; i < param.length; i++) {
+      const query = type === 'query' ? param[i] : ''
+      const source = type === 'source' ? param[i] : ''
+
+      const response = await getEverything({ query: query, source: source, pageSize: 5 })
+      console.log(response)
+      queryObj.push({ query: param[i], articles: response.data.articles })
     }
 
-    return keywordsObj
+    return queryObj
   }
 
 
@@ -54,6 +67,14 @@ class Home extends React.Component {
             <div className="news-grid" key={i}>
               <h3 className="keyword-heading">{keyword.query.toUpperCase()}</h3>
               {keyword.articles.map((article, i) => <NewsCard key={i} {...article} />)}
+            </div>
+          )
+        })}
+        {this.state.sources[0] && this.state.sources.map((source, i) => {
+          return (
+            <div className="news-grid" key={i}>
+              <h3 className="keyword-heading">{source.query.toUpperCase()}</h3>
+              {source.articles.map((article, i) => <NewsCard key={i} {...article} />)}
             </div>
           )
         })}
