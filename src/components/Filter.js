@@ -1,6 +1,17 @@
 import React from 'react'
 
-const Filter = ({ params, suggestions, formActive, handleChange, handleSubmit, handleAutocomplete }) => {
+const Filter = ({ params, suggestions, formActive, handleChange, handleSubmit, handleAutocomplete, handleBlur }) => {
+  
+  const style = {
+    position: 'absolute',
+    width: '100%',
+    zIndex: '1',
+    border: '1px solid lightblue',
+    backgroundColor: '#eee',
+    marginTop: '5px'
+  }
+  
+  
   return (
     <div className={`columns form-container ${formActive ? '' : 'form-hide'}`}>
       <form onSubmit={handleSubmit}
@@ -18,7 +29,7 @@ const Filter = ({ params, suggestions, formActive, handleChange, handleSubmit, h
             />
           </div>
         </div>
-        <div className="field">
+        <div className="field autocomplete-container">
           <label className="label">Source</label>
           <div className="control">
             <input
@@ -27,13 +38,15 @@ const Filter = ({ params, suggestions, formActive, handleChange, handleSubmit, h
               name="sourceName"
               value={params.sourceName}
               onChange={handleChange}
+              onBlur={handleBlur}
             />
           </div>
-          {suggestions && <div className="autcomplete">
-            {suggestions.map((item, i) => {
-              return <div className="autocomplete-item" key={i} onClick={handleAutocomplete}>{item}</div>
-            })}
-          </div>}
+          {suggestions &&
+            <div className="autcomplete" style={style}>
+              {suggestions.map((item, i) => {
+                return <div className="autocomplete-item" key={i} onClick={handleAutocomplete}>{item}</div>
+              })}
+            </div>}
         </div>
 
         <div className="field">

@@ -29,26 +29,28 @@ class Browse extends React.Component {
   
   findMatchingSources(wordSearched) {
     const matches = this.state.sources.filter(source => {
-      const regex = new RegExp(wordSearched, 'i')
-      return source.id.match(regex) 
+      const split = wordSearched.split(' ')
+      return split.every(word => source.id.match(new RegExp(word, 'i')))
+      
+      wordSearched.replace(' ', '\s')
     })
     return matches
   }
   
   handleSubmit = async (event) => {
+
+    // TODO Show error message to user
+    if (this.state.params.sourceName !== '' && this.state.params.source === '') {
+      console.log('no source matching..')
+    }
+
     event.preventDefault()
     const response = await getEverything(this.state.params)
     console.log(response)
-    // Error message -> no source matching tht name
     this.setState({ 
       articles: response.data.articles, 
       formActive: false
     })
-    
-    // const outerBrowseContainer = document.querySelector('.browse-outercontainer')
-    // outerBrowseContainer.style.height = '300px'
-    // const loading = document.querySelector('.loading')
-    // loading.style.opacity = '1'
   }
 
   redisplayForm = () => {
@@ -66,8 +68,8 @@ class Browse extends React.Component {
     let suggestions = this.state.suggestions
     
     if (event.target.name === 'sourceName' && this.state.sources) {
-      // TODO on change delete param id
-      // Regex not currently working with spaces
+      // Remove matched source if user edits the input field
+      params.source = ''
       const matchesArray = this.findMatchingSources(event.target.value)
       suggestions = matchesArray.map(source => source.name)
 
@@ -100,6 +102,10 @@ class Browse extends React.Component {
     this.setState({ params, suggestions: [] })
   }
 
+  handleBlur = () => {
+    this.setState({ suggestions: null })
+  }
+
   addToFeed = (param) => {
     if (param === 'query') saveKeyword(this.state.params.query)
 
@@ -109,13 +115,15 @@ class Browse extends React.Component {
   render() {
     return (
       <>
+        <div className="header"></div>
         <div className="browse-outercontainer">
-          <Filter params={this.state.params} 
-            suggestions={this.state.suggestions} 
-            formActive={this.state.formActive} 
-            handleChange={this.handleChange} 
-            handleSubmit={this.handleSubmit} 
-            handleAutocomplete={this.handleAutocomplete} />
+          <Filter params={this.state.params}
+            suggestions={this.state.suggestions}
+            formActive={this.state.formActive}
+            handleChange={this.handleChange}
+            handleSubmit={this.handleSubmit}
+            handleAutocomplete={this.handleAutocomplete}
+            handleBlur={this.handleBlur} />
           {!this.state.formActive && 
           <div className={`columns form-container 
             ${this.state.formActive ? 'form-nondisplay' : 'form-display'}`}
