@@ -179,13 +179,20 @@ body {
   padding: 30px;
 }
 
+form.box{
+  box-shadow: none;
+  border: 3px solid lightgreen;
+  border-radius: 10px;
+  box-shadow: 0 0 0 5px lightpink,
+  0 0 0 10px  lightblue;
+}
+
 .browse-outercontainer{
   position: relative;
 }
 
 
 .form-container.form-hide{
-  // display: none;
   position: absolute;
   transform: translateY(-100%);
   transition-duration: 3s;
