@@ -157,17 +157,22 @@ body {
   right: 10px;
 }
 
+.input {
+  border-radius: 1px;
+  border: 1px solid lightblue;
+}
+
 .autocomplete {
   position: relative;
-  display: inline-block;
-  border: 1px solid black;
-  background-color: blue;
+  display: inline;
+  background-color: red;
 }
 
 .autocomplete-item {
   font-size: small;
   margin: 3px 5px;
   border: 1px solid lightblue;
+  opacity: 0.5;
 }
 
 .autocomplete-item:hover{
@@ -196,6 +201,14 @@ body {
   background-color: white;
 }
 
+.label{
+  color: #555;
+}
+
+.submit-btn,
+.to-filters{
+  color: #333;
+}
 
 form.box{
   box-shadow: none;
@@ -207,10 +220,10 @@ form.box{
 }
 
 .browse-outercontainer{
-  position: relative;
-  height: calc(100vh - 52px);
-  transition: all 1s;
-  transition-timing-function: ease-in-out;
+  // position: relative;
+  // height: calc(100vh - 52px);
+  // transition: all 1s;
+  // transition-timing-function: ease-in-out;
 }
 
 .form-container.form-hide{

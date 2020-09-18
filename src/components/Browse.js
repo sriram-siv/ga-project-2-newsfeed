@@ -29,26 +29,31 @@ class Browse extends React.Component {
   
   findMatchingSources(wordSearched) {
     const matches = this.state.sources.filter(source => {
-      const regex = new RegExp(wordSearched, 'i')
-      return source.id.match(regex) 
+      const split = wordSearched.split(' ')
+      return split.every(word => source.id.match(new RegExp(word, 'i')))
     })
     return matches
   }
   
   handleSubmit = async (event) => {
+
+    // TODO Show error message to user
+    if (this.state.params.sourceName !== '' && this.state.params.source === '') {
+      console.log('no source matching..')
+    }
+
     event.preventDefault()
     const response = await getEverything(this.state.params)
     console.log(response)
-    // TODO Error message -> no source matching tht name
     this.setState({ 
       articles: response.data.articles, 
       formActive: false
     })
     
-    const outerBrowseContainer = document.querySelector('.browse-outercontainer')
-    outerBrowseContainer.style.height = '300px'
-    const loading = document.querySelector('.loading')
-    loading.style.opacity = '1'
+    // const outerBrowseContainer = document.querySelector('.browse-outercontainer')
+    // outerBrowseContainer.style.height = '300px'
+    // const loading = document.querySelector('.loading')
+    // loading.style.opacity = '1'
   }
 
   redisplayForm = () => {
@@ -66,8 +71,8 @@ class Browse extends React.Component {
     let suggestions = this.state.suggestions
     
     if (event.target.name === 'sourceName' && this.state.sources) {
-      // TODO on change delete param id
-      // Regex not currently working with spaces
+      // Remove matched source if user edits the input field
+      params.source = ''
       const matchesArray = this.findMatchingSources(event.target.value)
       suggestions = matchesArray.map(source => source.name)
 
@@ -143,7 +148,10 @@ class Browse extends React.Component {
             </div>
           </div>
           }
-          <div className={`${this.state.articles ? 'loading' : 'loading'} `}>LOADING</div>
+          {/* <div className={`${(this.state.articles.length === 0) ?
+            'loading active' : 'loading'}`}>
+            {`${this.state.articles.length} ${this.state.formActive}`}
+            LOADING</div> */}
         </div>
         <div className="news-grid">
           {this.state.articles.length > 0 && this.state.articles.map((article, i) => <NewsCard key={i} {...article}/> )}
