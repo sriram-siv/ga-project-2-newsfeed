@@ -1,7 +1,7 @@
 import axios from 'axios'
 
 const baseUrl = 'https://newsapi.org/v2'
-const apiKey = 'dae9c70dfb4c409f9e684bccc6a9355e'
+const apiKey = '9be5f7a0c56142638c29c8c773f91044'
 
 export const getEverything = params => {
 
@@ -30,16 +30,27 @@ export const getSources = () => {
   return axios.get(`${baseUrl}/sources?apiKey=${apiKey}`)
 }
 
-export const getTopStories = () => {
+export const getTopStories = (category) => {
   const pageSize = '&pageSize=5'
-  const categories = ['business', 'technology', 'entertainment', 'health', 'sport']
-  const business = axios.get(`${baseUrl}/top-headlines?category=${categories[0]}${pageSize}&apiKey=${apiKey}`)
+  let response
+  if (category === 'Business'){
+    response = axios.get(`${baseUrl}/top-headlines?category=business${pageSize}&apiKey=${apiKey}`)
+  } else if (category === 'Technology') {
+    response = axios.get(`${baseUrl}/top-headlines?category=technology${pageSize}&apiKey=${apiKey}`)
+  } else if (category === 'Entertainment') {
+    response = axios.get(`${baseUrl}/top-headlines?category=entertainment${pageSize}&apiKey=${apiKey}`)
+  } else if (category === 'Health') {
+    response = axios.get(`${baseUrl}/top-headlines?category=health${pageSize}&apiKey=${apiKey}`)
+  } else {
+    response = axios.get(`${baseUrl}/top-headlines?category=sport${pageSize}&apiKey=${apiKey}`)
+  }
+  // const business = axios.get(`${baseUrl}/top-headlines?category='Business'${pageSize}&apiKey=${apiKey}`)
   // const tech = axios.get(`${baseUrl}/top-headlines?category=${categories[1]}${pageSize}&apiKey=${apiKey}`)
   // const entertainment = axios.get(`${baseUrl}/top-headlines?category=${categories[2]}${pageSize}&apiKey=${apiKey}`)
   // const health = axios.get(`${baseUrl}/top-headlines?category=${categories[3]}${pageSize}&apiKey=${apiKey}`)
   // const sport = axios.get(`${baseUrl}/top-headlines?category=${categories[4]}${pageSize}&apiKey=${apiKey}`)
 
-  return business
+  return response
 
 }
 

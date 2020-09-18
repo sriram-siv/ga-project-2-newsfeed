@@ -8,32 +8,46 @@ class TopStories extends React.Component{
     stories: null
   }
 
-  async componentDidMount() {
-    const response = await getTopStories()
-    console.log(response)
+  componentDidMount() {
+    // const response = await getTopStories()
 
+    // this.setState({
+    //   stories: response.data
+    // })
+
+  }
+
+  handleClick = async event =>{
+    const response = await getTopStories(event.target.textContent)
+    
     this.setState({
       stories: response.data
     })
 
-    setTimeout(() => console.log(this.state.stories.articles), 3000)
- 
-
+    setTimeout(() => console.log(this.state.stories), 3000)
+    
   }
 
   render(){
     
-    if (!this.state.stories) return null
+    // if (!this.state.stories) return null
     return (
-      <div className='outer-top-stories'>
-        <div className="news-grid">
-          <h3 className="keyword-heading">Business</h3>
-          {this.state.stories.articles.map((article, i) => <NewsCard key={i} {...article} />)}
-          {/* <div>{this.state.stories.articles.map((article, index) => <div key={index}>{article}</div>)}</div> */}
-          
+      <>
+        <div>
+          <h3 className="keyword-heading">
+            <button onClick={this.handleClick} className="button is-large">Business</button>
+            <button onClick={this.handleClick} className="button is-large">Technology</button>
+            <button onClick={this.handleClick} className="button is-large">Entertainment</button>
+            <button onClick={this.handleClick} className="button is-large">Health</button>
+            <button onClick={this.handleClick} className="button is-large">Sport</button>
+          </h3>
         </div>
-      </div> 
-
+        <div className='outer-top-stories'>
+          <div className="news-grid">
+            {this.state.stories && this.state.stories.articles.map((article, i) => <NewsCard key={i} {...article} />)}
+          </div>
+        </div> 
+      </>
     )
 
   }
