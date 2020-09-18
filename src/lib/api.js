@@ -29,3 +29,17 @@ export const getEverything = params => {
 export const getSources = () => {
   return axios.get(`${baseUrl}/sources?apiKey=${apiKey}`)
 }
+
+export const getTopStories = () => {
+  const pageSize = '&pageSize=5'
+  const categories = ['business', 'technology', 'entertainment', 'health', 'sport']
+  const business = axios.get(`${baseUrl}/top-headlines?category=${categories[0]}${pageSize}&apiKey=${apiKey}`)
+  // const tech = axios.get(`${baseUrl}/top-headlines?category=${categories[1]}${pageSize}&apiKey=${apiKey}`)
+  // const entertainment = axios.get(`${baseUrl}/top-headlines?category=${categories[2]}${pageSize}&apiKey=${apiKey}`)
+  // const health = axios.get(`${baseUrl}/top-headlines?category=${categories[3]}${pageSize}&apiKey=${apiKey}`)
+  // const sport = axios.get(`${baseUrl}/top-headlines?category=${categories[4]}${pageSize}&apiKey=${apiKey}`)
+
+  return business
+
+}
+
