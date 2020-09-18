@@ -5,9 +5,12 @@ import Navbar from './components/Navbar'
 import Home from './components/Home'
 import Browse from './components/Browse'
 
+import Notifications from 'react-notify-toast'
+
 const App = () => {
   return (
     <BrowserRouter>
+      <Notifications />
       <Navbar />
       <Switch>
         <Route exact path='/' component={Home} />

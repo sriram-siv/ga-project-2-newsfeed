@@ -32,6 +32,8 @@ body {
   background-image: linear-gradient(lightgreen,
     lightgreen 8px, lightblue 7px, white 90%);
   border-top: 10px solid lightpink;
+  padding-right: 0;
+  padding-left: 0; 
 }
 
 .loading {
@@ -186,8 +188,7 @@ body {
   // display: none;
   position: absolute;
   transform: translateY(-100%);
-  transition-duration: 1s;
-  transition-timing-function: cubic-bezier(0.075, 0.82, 0.165, 1);
+  transition-duration: 3s;
   z-index: -1;
   margin-bottom: 0;
 }
@@ -222,9 +223,16 @@ body {
   border-radius: 2px;
 }
 
-
 .submit-btn{
   border: 3px solid lightblue;
   font-weight: bold;
 }
 
+.feed-empty{
+ margin-top: 40px;
+ text-align: center;
+ padding: 20px 0;
+ color: #888;
+ border-top: 3px solid lightgreen;
+ border-bottom: 3px solid lightpink;
+}

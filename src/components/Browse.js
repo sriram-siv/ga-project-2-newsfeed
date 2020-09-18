@@ -1,6 +1,7 @@
 import React from 'react'
 import { getEverything, getSources } from '../lib/api'
 import { saveKeyword } from '../lib/feed'
+import { popupNotification } from '../lib/notifications'
 
 import NewsCard from './NewsCard'
 import Filter from './Filter'
@@ -95,6 +96,8 @@ class Browse extends React.Component {
 
   addToFeed = (param) => {
     if (param === 'query') saveKeyword(this.state.params.query)
+
+    popupNotification('Added to feed')
   }
 
   render() {
