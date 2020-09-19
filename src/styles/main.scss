@@ -28,8 +28,9 @@ body {
 }
 
 .navbar.is-dark {
-  // background-color: rgb(55, 187, 231);
-  background-color: #888;
+  background-color: rgb(55, 187, 231);
+  background-color: white;
+  background-color: #ccc;
 }
 
 .hero {
@@ -50,8 +51,8 @@ body {
 
 .header {
   background-image: linear-gradient(lightpink,
-    lightpink 10px, lightgreen 9px,
-    lightgreen 17px, lightblue 16px, white 90%);
+    lightpink 6px, lightgreen 5px,
+    lightgreen 11px, lightblue 12px, white 20%);
   border-top: 5px solid white;
   padding-right: 0;
   padding-left: 0; 
@@ -59,22 +60,31 @@ body {
 }
 
 .loading {
-  margin-top: 100px;
   opacity: 0;
   transition: all 1s;
   color: #555;
   text-align: center;
   font-size: 1.2em;
+  height: 0;
 }
 
 #is-loading {
   opacity: 1;
+  height: auto;
+  margin-top: 100px;
 }
 
 .intro-blurb {
   text-align: center;
-  font-size: 1.5rem;
+  font-size: 1.2rem;
   color: #555;
+
+  max-width: 700px;
+  margin: auto;
+  padding: 20px 0;
+
+  border-radius: 2px;
+  // background-color: rgba(255, 182, 193, 0.4);
 }
 
 .news-grid {
@@ -83,11 +93,17 @@ body {
   justify-content: center;
 }
 
+.news-scroll {
+  display: flex;
+}
+
 .news-card, .news-card-text-only {
   position: relative;
-  width: 300px;
+  min-width: 280px;
+  max-width: 280px;
   height: 300px;
-  border: 2px solid lightpink;
+  border: 2px solid lightblue;
+  border: 2px solid #9bf;
 
   margin: 15px;
   background-color: white;
@@ -117,22 +133,34 @@ body {
   }
 }
 
-.shadow-1 {
+.shadow-1, .shadow-2 {
   position: absolute;
   left: 0;
   top: 0;
-  width: 300px;
+  width: 280px;
   height: 300px;
-  box-shadow: 5px 5px 0 -3px lightgreen;
+  transition: all 1s;
+}
+
+.shadow-1 {
+  background-color: lightyellow;
+  background-color: #cfb;
+  z-index: -1;
+  transform: rotate(2deg);
+
+  &.card-hover {
+    transform: rotate(5deg);
+  }
 }
 
 .shadow-2 {
-  position: absolute;
-  left: 5px;
-  top: 5px;
-  width: 300px;
-  height: 300px;
-  box-shadow: 5px 5px 0 -3px lightblue;
+  background-color: lightpink;
+  z-index: -2;
+  transform: rotate(4deg);
+  
+  &.card-hover {
+    transform: rotate(10deg);
+  }
 }
 
 .news-card img {
@@ -202,10 +230,9 @@ body {
   font-weight: 300;
   padding: 20px 100px 0;
   width: 100%;
-
-  background-image: linear-gradient(rgba(255,255,255,0),
-    rgba(255,255,255,0) 60%, lightgreen 59%, lightgreen 61%, rgba(255,255,255,0) 60%,
-    rgba(255,255,255,0) 70%, lightpink 69%, lightpink 71%, rgba(255,255,255,0) 70%);
+  background-image: linear-gradient(transparent,
+    transparent 60%, lightgreen 59%, lightgreen 61%, transparent 60%,
+    transparent 70%, lightpink 69%, lightpink 71%, transparent 70%);
 }
 
 
@@ -332,5 +359,10 @@ body {
   position: absolute;
   right: 20px;
   top: 4px;
+}
+
+.section-scroll {
+overflow-x: scroll;
+padding: 20px 0;
 }
 
