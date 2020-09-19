@@ -14,17 +14,24 @@ class Home extends React.Component {
   }
 
   async componentDidMount() {
+    this.getSubs()
+  }
+
+  getSubs = async () => {
+    console.log('fetching subs..')
     const keywords = getKeywords()
     if (keywords) {
       const keywordsObj = await this.getArticles(keywords, 'q')
       this.setState({ keywords: keywordsObj })
+    } else {
+      this.setState({ keywords: null })
     }
     const sources = getSources()
     if (sources) {
       const sourcesObj = await this.getArticles(sources, 'source')
-
-      console.log(sourcesObj)
       this.setState({ sources: sourcesObj, loading: false })
+    } else {
+      this.setState({ sources: null })
     }
   }
 
@@ -45,6 +52,7 @@ class Home extends React.Component {
 
   removeSub = (type, query) => {
     removeSubscription(type, query)
+    this.getSubs()
   }
 
 

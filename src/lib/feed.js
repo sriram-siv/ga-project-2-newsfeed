@@ -29,12 +29,20 @@ export const getSources = () => {
 }
 
 export const removeSubscription = (type, query) => {
+  let itemName
   switch (type) {
     case 'keyword':
-      console.log('removing keyword')
+      itemName = 'savedKeywords'
       break
     case 'source':
-      console.log('removing source')
+      itemName = 'savedSources'
       break
   }
+  
+  localStorage.setItem(itemName,
+    localStorage.getItem(itemName)
+      .split(',')
+      .filter(item => item !== query)
+      .join(',')
+  )
 }
