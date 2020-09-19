@@ -1,7 +1,9 @@
 import React from 'react'
 import image from '../images/feed.jpg'
 
-const Filter = ({ params, suggestions, formActive, handleChange, handleSubmit, handleAutocomplete, handleBlur, toggleForm, addToFeed }) => {
+const Filter = ({ params, suggestions, formActive, 
+  handleChange, handleSubmit, handleAutocomplete,
+  handleBlur, toggleForm, addToFeed }) => {
   
   const style = {
     position: 'absolute',
