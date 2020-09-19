@@ -12,11 +12,6 @@ export const getEverything = params => {
     }
   })
 
-  // const queryString =
-  //   `${query ? 'q=' + query + '&' : ''}` +
-  //   `${source ? 'sources=' + source + '&' : ''}` +
-  //   `${pageSize ? 'pageSize=' + pageSize + '&' : ''}`
-
   return axios.get(`${baseUrl}/everything?${queryString}apiKey=${apiKey}`)
 }
 
