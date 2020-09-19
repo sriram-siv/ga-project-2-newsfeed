@@ -106,7 +106,7 @@ class Browse extends React.Component {
   // Hide autocomplete when input loses focus
   handleBlur = () => {
     // On delay timer so that it doesnt prevent onClick from firing on the item
-    setTimeout(() => this.setState({ suggestions: null }), 50)
+    setTimeout(() => this.setState({ suggestions: null }), 150)
   }
 
   addToFeed = param => {
