@@ -27,4 +27,3 @@ export const getSources = () => {
 export const getTopStories = (category) => {
   return axios.get(`${baseUrl}/top-headlines?category=${category.toLowerCase()}&pageSize=15&apiKey=${apiKey}`)
 }
-

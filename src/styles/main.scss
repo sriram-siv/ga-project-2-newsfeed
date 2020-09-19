@@ -347,7 +347,18 @@ body {
   height: 100vh;
 }
 
-// NAVBAR
+.is-subselected{
+  color: white;
+  background-color: #888;
+}
+
+#topstories-loading {
+  height: 300px;
+}
+
+
+//End of Top Stories Section
+
 
 .nav-item{
   position: relative;
