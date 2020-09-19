@@ -42,7 +42,13 @@ body {
 .hero-body .container .title {
   font-weight: 400;
   font-size: 4.5em;
-  color: #333;
+  color: #555;
+}
+
+.title img {
+  position: relative;
+  top: 20px;
+  left: 50px;
 }
 
 #hero-loading {
@@ -50,9 +56,9 @@ body {
 }
 
 .header {
-  background-image: linear-gradient(lightpink,
-    lightpink 6px, lightgreen 5px,
-    lightgreen 11px, lightblue 12px, white 20%);
+  background-image: linear-gradient(plum,
+    plum 4px, #cfb 3px,
+    #cfb 7px, #9bf 6px, #9bf 9px, white 8px);
   border-top: 5px solid white;
   padding-right: 0;
   padding-left: 0; 
@@ -139,17 +145,17 @@ body {
   top: 0;
   width: 280px;
   height: 300px;
-  transition: all 1s;
+  transition: all 0.6s;
 }
 
 .shadow-1 {
   background-color: lightyellow;
   background-color: #cfb;
   z-index: -1;
-  transform: rotate(2deg);
+  transform: rotate(1deg);
 
   &.card-hover {
-    transform: rotate(5deg);
+    transform: rotate(2deg);
   }
 }
 
@@ -157,17 +163,17 @@ body {
   background-color: lightpink;
   background-color: plum;
   z-index: -2;
-  transform: rotate(4deg);
+  transform: rotate(2deg);
   
   &.card-hover {
-    transform: rotate(10deg);
+    transform: rotate(5deg);
   }
 }
 
 .news-card img {
   width: 100%;
   height: 50%;
-  transition: all 1s;
+  transition: all 0.7s;
 }
 
 .news-card h4,
@@ -179,7 +185,7 @@ body {
   color: #555;
   background-color: rgba(255,255,255,0);
 
-  transition: all 1s;
+  transition: all 0.7s;
 }
 
 .news-card p,
@@ -187,7 +193,7 @@ body {
   font-size: medium;
   padding: 0 15px;
   opacity: 0;
-  transition: all 1s;
+  transition: all 0.7s;
   background-color: white;
 }
 
@@ -229,11 +235,16 @@ body {
 .keyword-heading {
   font-size: 1.7rem;
   font-weight: 300;
-  padding: 20px 100px 0;
+  padding: 50px 100px 0;
   width: 100%;
   background-image: linear-gradient(transparent,
-    transparent 60%, lightgreen 59%, lightgreen 61%, transparent 60%,
-    transparent 70%, lightpink 69%, lightpink 71%, transparent 70%);
+    transparent 70%, lightgreen 69%, lightgreen 71%, transparent 70%,
+    transparent 80%, lightpink 79%, lightpink 81%, transparent 80%);
+
+  &:firs {
+    margin-top: 100px;
+    padding-top: 100px;
+  }
 }
 
 

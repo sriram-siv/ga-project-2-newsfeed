@@ -26,7 +26,7 @@ class Navbar extends React.Component {
           </div>
         </div>
 
-        <img className='logo' src={image} alt='new-feed logo' />
+        {/* <img className='logo' src={image} alt='new-feed logo' /> */}
       </nav>
     )
   }
