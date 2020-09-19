@@ -31,28 +31,12 @@ export const getSources = () => {
 
 export const getTopStories = async (category) => {
   const pageSize = '&pageSize=15'
-  
-  // let response
   const response = await getCategoryURL(category, pageSize)
-  // if (category === 'Business'){
-    console.log(response)
-  // } else if (category === 'Technology') {
-  //   response = axios.get(`${baseUrl}/top-headlines?category=technology${pageSize}&apiKey=${apiKey}`)
-  // } else if (category === 'Entertainment') {
-  //   response = axios.get(`${baseUrl}/top-headlines?category=entertainment${pageSize}&apiKey=${apiKey}`)
-  // } else if (category === 'Health') {
-  //   response = axios.get(`${baseUrl}/top-headlines?category=health${pageSize}&apiKey=${apiKey}`)
-  // } else {
-  //   response = axios.get(`${baseUrl}/top-headlines?category=sport${pageSize}&apiKey=${apiKey}`)
-  // }
-  
   return response
-
 }
 
 async function getCategoryURL(category, pageSize){
   return await axios.get(
     `${baseUrl}/top-headlines?category=${category.toLowerCase()}${pageSize}&apiKey=${apiKey}`
   )
-
 }
