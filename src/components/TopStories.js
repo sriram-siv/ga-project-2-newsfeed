@@ -20,9 +20,6 @@ class TopStories extends React.Component{
   }
 
   handleClick = event =>{
-    // this.setState({
-    //   loading: true
-    // })
 
     this.handleLoad(event)
   }
@@ -40,9 +37,9 @@ class TopStories extends React.Component{
     
     return (
       <>
-        <section id={!this.state.loading && 'hero-loading'}>
+        <section id={!this.state.loading && 'topstories-loading'}>
           <div className="header"></div>
-          <div className="navbar topstory-nav form-container" role="navigation" aria-label="sub navigation">
+          <div className="navbar form-container" role="navigation" aria-label="sub navigation">
             <div className="navbar-brand">
               <SubNavBtns onClick={this.handleClick} className="button is-large"/>
             </div>
