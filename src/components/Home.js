@@ -18,7 +18,7 @@ class Home extends React.Component {
   }
 
   getSubs = async () => {
-    console.log('fetching subs..')
+
     const keywords = getKeywords()
     if (keywords) {
       const keywordsObj = await this.getArticles(keywords, 'q')
@@ -26,12 +26,13 @@ class Home extends React.Component {
     } else {
       this.setState({ keywords: null })
     }
+    
     const sources = getSources()
     if (sources) {
       const sourcesObj = await this.getArticles(sources, 'source')
       this.setState({ sources: sourcesObj, loading: false })
     } else {
-      this.setState({ sources: null })
+      this.setState({ sources: null, loading: false })
     }
   }
 
