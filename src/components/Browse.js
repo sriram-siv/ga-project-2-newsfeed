@@ -47,7 +47,7 @@ class Browse extends React.Component {
     }
     this.toggleForm(false)
 
-    const response = await getEverything(this.state.params)
+    const response = await getEverything({ ...this.state.params, sourceName: null })
     console.log(response)
     this.setState({ 
       articles: response.data.articles

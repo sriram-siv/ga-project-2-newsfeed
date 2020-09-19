@@ -7,7 +7,6 @@
 
 
 body {
-  // font-family: 'Open Sans', sans-serif;
   font-family: 'Montserrat', sans-serif;
 }
 
@@ -27,9 +26,7 @@ body {
   }
 }
 
-.navbar.is-dark {
-  background-color: rgb(55, 187, 231);
-  background-color: white;
+.navbar {
   background-color: #ccc;
 }
 
@@ -39,20 +36,24 @@ body {
   transition-timing-function: ease-in-out;
 }
 
+#hero-loading {
+  height: 270px;
+}
+
 .hero-body .container .title {
   font-weight: 400;
   font-size: 4.5em;
   color: #555;
 }
 
-.title img {
-  position: relative;
-  top: 20px;
-  left: 50px;
-}
+.title {
+  text-align: center;
 
-#hero-loading {
-  height: 270px;
+  img {
+    position: relative;
+    top: 20px;
+    left: 50px;
+  }
 }
 
 .header {
@@ -249,6 +250,11 @@ body {
     color: palevioletred;
     background-color: white;
     cursor: pointer;
+    transition: all 0.3s;
+
+    &:hover {
+      color: #f03;
+    }
   }
 }
 
@@ -335,9 +341,9 @@ body {
  padding: 20px 0;
  color: #888;
 
- background-image: linear-gradient(rgba(255,255,255,0),
-    rgba(255,255,255,0) 40%, lightgreen 39%, lightgreen 41%, rgba(255,255,255,0) 40%,
-    rgba(255,255,255,0) 50%, lightpink 49%, lightpink 51%, rgba(255,255,255,0) 50%);
+ background-image: linear-gradient(transparent,
+    transparent 40%, lightgreen 39%, lightgreen 41%, transparent 40%,
+    transparent 50%, lightpink 49%, lightpink 51%, transparent 50%);
 }
 
 
@@ -362,17 +368,18 @@ body {
 
 .nav-item{
   position: relative;
+  text-align: right;
   color: #555;
   padding: 15px 15px;
   width: 9em;
 
   &:hover {
-    background-color: #ffcaff;
-    color: #555;
+    background-color: white;
+    color: #888;
   }
 
   &:first-of-type {
-    margin-left: 40px;
+    margin-left: 0px;
   }
 }
 

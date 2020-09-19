@@ -54,6 +54,8 @@ class Home extends React.Component {
   removeSub = (type, query) => {
     removeSubscription(type, query)
     this.getSubs()
+
+    // TODO animate removal and dont reget subs - not necessary to poll the api again
   }
 
 
