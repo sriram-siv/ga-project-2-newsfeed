@@ -7,12 +7,13 @@ import { getTopStories } from '../lib/api'
 class TopStories extends React.Component{
   state= {
     stories: null,
-    selected: 'general',
+    subselected: 'General',
     loading: true
   }
 
   async componentDidMount() {
     const response = await getTopStories('general')
+    
     this.setState({
       stories: response.data,
       loading: false
@@ -20,7 +21,12 @@ class TopStories extends React.Component{
   }
 
   handleClick = event =>{
-
+    const subselected = event.target.textContent
+    
+    this.setState({
+      subselected: subselected
+    })
+    
     this.handleLoad(event)
   }
 
@@ -41,7 +47,7 @@ class TopStories extends React.Component{
           <div className="header"></div>
           <div className="navbar form-container" role="navigation" aria-label="sub navigation">
             <div className="navbar-brand">
-              <SubNavBtns onClick={this.handleClick} className="button is-large"/>
+              <SubNavBtns isSubSelected={this.state.subselected} onClick={this.handleClick} className="button is-large"/>
             </div>
           </div>
           <div className='outer-top-stories'>
