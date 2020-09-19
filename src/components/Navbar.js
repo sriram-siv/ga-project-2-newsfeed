@@ -1,6 +1,5 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import image from '../images/feed-large.png'
 
 class Navbar extends React.Component {
 
@@ -18,15 +17,14 @@ class Navbar extends React.Component {
     const { selected } = this.state
     return (
       <nav className="navbar is-dark">
-        <div className="container">
-          <div className="navbar-brand">
-            <Link to="/" className={`nav-item ${selected === 'feed' ? 'is-selected' : ''}`} onClick={this.selectNavItem}>FEED</Link>
-            <Link to="/browse" className={`nav-item ${selected === 'browse' ? 'is-selected' : ''}`} onClick={this.selectNavItem}>BROWSE</Link>
-            <Link to="/top-stories" className={`nav-item ${selected === 'top stories' ? 'is-selected' : ''}`} onClick={this.selectNavItem}>TOP STORIES</Link>
-          </div>
+        <div className="navbar-brand">
+          <Link to="/" className={`nav-item ${selected === 'feed' ? 'is-selected' : ''}`} onClick={this.selectNavItem}>
+            FEED
+            <div className="link-border"></div>
+          </Link>
+          <Link to="/browse" className={`nav-item ${selected === 'browse' ? 'is-selected' : ''}`} onClick={this.selectNavItem}>BROWSE</Link>
+          <Link to="/top-stories" className={`nav-item ${selected === 'top stories' ? 'is-selected' : ''}`} onClick={this.selectNavItem}>TOP STORIES</Link>
         </div>
-
-        {/* <img className='logo' src={image} alt='new-feed logo' /> */}
       </nav>
     )
   }

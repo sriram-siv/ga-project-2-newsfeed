@@ -56,10 +56,10 @@ body {
 }
 
 .header {
-  background-image: linear-gradient(plum,
-    plum 4px, #cfb 3px,
+  background-image: linear-gradient(#ffcaff,
+    #ffcaff 4px, #cfb 3px,
     #cfb 7px, #9bf 6px, #9bf 9px, white 8px);
-  border-top: 5px solid white;
+  border-top: 0px solid white;
   padding-right: 0;
   padding-left: 0; 
   min-height: 20px;
@@ -90,7 +90,6 @@ body {
   padding: 20px 0;
 
   border-radius: 2px;
-  // background-color: rgba(255, 182, 193, 0.4);
 }
 
 .news-grid {
@@ -108,7 +107,6 @@ body {
   min-width: 280px;
   max-width: 280px;
   height: 300px;
-  border: 2px solid lightblue;
   border: 2px solid #9bf;
 
   margin: 15px;
@@ -166,7 +164,7 @@ body {
   transform: rotate(2deg);
   
   &.card-hover {
-    transform: rotate(5deg);
+    transform: rotate(4deg);
   }
 }
 
@@ -233,17 +231,24 @@ body {
 }
 
 .keyword-heading {
+  position: relative;
   font-size: 1.7rem;
   font-weight: 300;
   padding: 50px 100px 0;
   width: 100%;
   background-image: linear-gradient(transparent,
-    transparent 70%, lightgreen 69%, lightgreen 71%, transparent 70%,
-    transparent 80%, lightpink 79%, lightpink 81%, transparent 80%);
+    transparent 75%, #9bf 74%, #9bf 76%, transparent 75%,
+    transparent 80%, plum 79%, plum 81%, transparent 80%);
 
-  &:firs {
-    margin-top: 100px;
-    padding-top: 100px;
+  span {
+    position: absolute;
+    right: 25px;
+    top: 50px;
+    padding: 5px;
+    font-size: medium;
+    color: palevioletred;
+    background-color: white;
+    cursor: pointer;
   }
 }
 
@@ -254,7 +259,7 @@ body {
   padding: 30px;
   overflow-y: hidden;
   height: 16.5em;
-  background-image: linear-gradient(lightblue, white 100%);
+  // background-image: linear-gradient(lightblue, white 100%);
 }
 
 .query-form {
@@ -342,13 +347,16 @@ body {
   height: 100vh;
 }
 
+// NAVBAR
 
 .nav-item{
-  color: white;
+  position: relative;
+  color: #555;
   padding: 15px 15px;
+  width: 9em;
 
   &:hover {
-    background-color: white;
+    background-color: #ffcaff;
     color: #555;
   }
 
@@ -359,11 +367,16 @@ body {
 
 .is-selected {
   background-color: white;
-  color: #555;
+  color: #888;
 }
 
-.logo-container {
-  position: relative;
+.link-border {
+  position: absolute;
+  bottom: -9px;
+  left: 0;
+  height: 9px;
+  width: 9em;
+  background-color: transparent;
 }
 
 .logo {
@@ -373,10 +386,11 @@ body {
   top: 4px;
 }
 
+// SCROLL
+
 .section-scroll {
   overflow-x: scroll;
   padding: 20px 0;
-
 }
 
 ::-webkit-scrollbar {

@@ -10,7 +10,7 @@ class Browse extends React.Component {
   
   state = {
     params: {
-      query: '',
+      q: '',
       source: '',
       sourceName: '' 
     },
@@ -55,7 +55,6 @@ class Browse extends React.Component {
   }
 
   toggleForm = (state) => {
-    console.log('togggggle')
     this.setState({
       formActive: state
     })
@@ -110,7 +109,7 @@ class Browse extends React.Component {
   }
 
   addToFeed = param => {
-    if (param === 'query') saveKeyword(this.state.params.query)
+    if (param === 'q') saveKeyword(this.state.params.q)
     if (param === 'source') saveSource(this.state.params.source)
     
     popupNotification('Added in Feed')

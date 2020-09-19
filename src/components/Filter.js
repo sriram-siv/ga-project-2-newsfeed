@@ -25,44 +25,40 @@ const Filter = ({ params, suggestions, formActive,
   return (
     <div className='autocomplete-container'>
       <div className="form-container">
-        <div className='columns'>
-          <form onSubmit={handleSubmit}
-            className="column is-full box query-form"
-            autoComplete="off"
-            style={formStyle} >
-            <div className="field">
-              <label className="label">Keyword</label>
-              <div className="control">
-                <input
-                  className="input"
-                  placeholder="Keyword"
-                  name='query'
-                  value={params.query}
-                  onChange={handleChange}
-                />
-              </div>
+        <form onSubmit={handleSubmit}
+          className="column is-full box query-form"
+          autoComplete="off"
+          style={formStyle} >
+          <div className="field">
+            <label className="label">Keyword</label>
+            <div className="control">
+              <input
+                className="input"
+                placeholder="Keyword"
+                name='q'
+                value={params.q}
+                onChange={handleChange}
+              />
             </div>
-            <div className="field autocomplete-container">
-              <label className="label">Source</label>
-              <div className="control">
-                <input
-                  className="input"
-                  placeholder="Source"
-                  name="sourceName"
-                  value={params.sourceName}
-                  onChange={handleChange}
-                  onBlur={handleBlur}
-                />
-              </div>
+          </div>
+          <div className="field autocomplete-container">
+            <label className="label">Source</label>
+            <div className="control">
+              <input
+                className="input"
+                placeholder="Source"
+                name="sourceName"
+                value={params.sourceName}
+                onChange={handleChange}
+                onBlur={handleBlur}
+              />
             </div>
+          </div>
 
-            <div className="field">
-              <button
-                type="submit" 
-                className="button is-fullwidth">SEARCH NEWS</button>
-            </div>
-          </form>
-        </div>
+          <div className="field">
+            <button type="submit" className="button is-fullwidth">SEARCH NEWS</button>
+          </div>
+        </form>
         {/* ONLY DISPLAY THIS DIV WHEN FORM REDUCES TO 0 HEIGHT */}
         <div className="column is-full query-form">
           <button onClick={() => toggleForm(true)} 
@@ -72,8 +68,8 @@ const Filter = ({ params, suggestions, formActive,
           <div className="current-filters">
             <h2>Current filters</h2>
             <div className="buttons are-small button-box">
-              {params.query &&
-                <button className="button add-feed" onClick={() => addToFeed('query')}>{params.query}<span>&nbsp;<img src={image} /></span></button>
+              {params.q &&
+                <button className="button add-feed" onClick={() => addToFeed('q')}>{params.q}<span>&nbsp;<img src={image} /></span></button>
               }
               {params.source &&
                 <button className="button add-feed" onClick={() => addToFeed('source')}>{params.sourceName}<span>&nbsp;<img src={image}/></span></button>

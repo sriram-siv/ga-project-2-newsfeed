@@ -27,3 +27,14 @@ export const getSources = () => {
   if (list) return list.split(',')
   return null
 }
+
+export const removeSubscription = (type, query) => {
+  switch (type) {
+    case 'keyword':
+      console.log('removing keyword')
+      break
+    case 'source':
+      console.log('removing source')
+      break
+  }
+}
