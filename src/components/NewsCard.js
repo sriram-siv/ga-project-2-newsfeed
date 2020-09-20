@@ -26,11 +26,11 @@ class NewsCard extends React.Component {
         <h4>{title}</h4>
         {author && author.length < 20 && <p className='article-info'>Author: {author}</p>}
         <p className='article-info'>Source: {source.name}</p>
-        <a onClick={this.goToLink}>
-          <p className='read-more'>Read more</p>
-        </a>
-        <div className={`shadow-1 ${this.state.hover ? 'card-hover' : ''}`}></div>
-        <div className={`shadow-2 ${this.state.hover ? 'card-hover' : ''}`}></div>
+        <a className="read-more" onClick={this.goToLink}>Read more</a>
+        <div className="shadows">
+          <div className={`shadow-1 ${this.state.hover ? 'card-hover' : ''}`}></div>
+          <div className={`shadow-2 ${this.state.hover ? 'card-hover' : ''}`}></div>
+        </div>
       </div>
     )
   }

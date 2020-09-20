@@ -26,7 +26,7 @@ const Filter = ({ params, suggestions, formActive,
     <div className='autocomplete-container'>
       <div className="form-container">
         <form onSubmit={handleSubmit}
-          className="column is-full box query-form"
+          className="query-form"
           autoComplete="off"
           style={formStyle} >
           <div className="field">
@@ -62,7 +62,7 @@ const Filter = ({ params, suggestions, formActive,
         {/* ONLY DISPLAY THIS DIV WHEN FORM REDUCES TO 0 HEIGHT */}
         <div className="column is-full query-form">
           <button onClick={() => toggleForm(true)} 
-            className="button is-fullwidth to-filters">
+            className="button is-fullwidth">
               BACK TO FILTERS
           </button>
           <div className="current-filters">

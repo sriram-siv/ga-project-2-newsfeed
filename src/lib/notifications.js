@@ -6,5 +6,5 @@ const popupStyles = {
 }
 
 export const popupNotification = message => {
-  notify.show(message, 'custom', 4000, popupStyles)
+  notify.show(message, 'custom', 3000, popupStyles)
 }
