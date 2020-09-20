@@ -30,24 +30,30 @@ body {
   background-color: #ccc;
 }
 
-.hero {
-  height: calc(100vh - 52px);
+.header {
+  background-image: linear-gradient(#ffcaff,
+    #ffcaff 4px, #cfb 3px,
+    #cfb 7px, #9bf 6px, #9bf 9px, white 8px);
+  min-height: 20px;
+}
+
+// Misspelt to avoid bulma clash
+.heroe {
+  padding-top: 50px;
+  height: 270px;
   transition: all 1s;
   transition-timing-function: ease-in-out;
 }
 
 #hero-loading {
-  height: 270px;
-}
-
-.hero-body .container .title {
-  font-weight: 400;
-  font-size: 4.5em;
-  color: #555;
+  height: calc(100vh - 52px);
 }
 
 .title {
   text-align: center;
+  font-weight: 400;
+  font-size: 4.5em;
+  color: #555;
 
   img {
     position: relative;
@@ -56,14 +62,11 @@ body {
   }
 }
 
-.header {
-  background-image: linear-gradient(#ffcaff,
-    #ffcaff 4px, #cfb 3px,
-    #cfb 7px, #9bf 6px, #9bf 9px, white 8px);
-  border-top: 0px solid white;
-  padding-right: 0;
-  padding-left: 0; 
-  min-height: 20px;
+.subtitle {
+  text-align: center;
+  font-size: 1.2rem;
+  color: #555;
+  padding: 20px 0;
 }
 
 .loading {
@@ -79,18 +82,6 @@ body {
   opacity: 1;
   height: auto;
   margin-top: 100px;
-}
-
-.intro-blurb {
-  text-align: center;
-  font-size: 1.2rem;
-  color: #555;
-
-  max-width: 700px;
-  margin: auto;
-  padding: 20px 0;
-
-  border-radius: 2px;
 }
 
 .news-grid {
@@ -112,6 +103,25 @@ body {
 
   margin: 15px;
   background-color: white;
+
+  h4 {
+    position: relative;
+    top: 0;
+    padding: 15px 20px;
+    font-weight: 600;
+    color: #555;
+    background-color: rgba(255,255,255,0);
+
+    transition: all 0.7s;
+  }
+
+  p {
+    font-size: medium;
+    padding: 0 15px;
+    opacity: 0;
+    transition: all 0.7s;
+    background-color: white;
+  }
 }
 
 .news-card:hover {
@@ -120,7 +130,7 @@ body {
   }
   h4 {
     top: -150px;
-    background-color: rgba(255,255,255,1);
+    background-color: white;
   }
   .article-info {
     top: -150px;
@@ -138,62 +148,10 @@ body {
   }
 }
 
-.shadow-1, .shadow-2 {
-  position: absolute;
-  left: 0;
-  top: 0;
-  width: 280px;
-  height: 300px;
-  transition: all 0.6s;
-}
-
-.shadow-1 {
-  background-color: lightyellow;
-  background-color: #cfb;
-  z-index: -1;
-  transform: rotate(1deg);
-
-  &.card-hover {
-    transform: rotate(2deg);
-  }
-}
-
-.shadow-2 {
-  background-color: lightpink;
-  background-color: plum;
-  z-index: -2;
-  transform: rotate(2deg);
-  
-  &.card-hover {
-    transform: rotate(4deg);
-  }
-}
-
 .news-card img {
   width: 100%;
   height: 50%;
   transition: all 0.7s;
-}
-
-.news-card h4,
-.news-card-text-only h4 {
-  position: relative;
-  top: 0;
-  padding: 15px 20px;
-  font-weight: 600;
-  color: #555;
-  background-color: rgba(255,255,255,0);
-
-  transition: all 0.7s;
-}
-
-.news-card p,
-.news-card-text-only p {
-  font-size: medium;
-  padding: 0 15px;
-  opacity: 0;
-  transition: all 0.7s;
-  background-color: white;
 }
 
 .article-info {
@@ -205,6 +163,35 @@ body {
   position: absolute;
   top: 250px;
   right: 10px;
+}
+
+.shadows div {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 280px;
+  height: 300px;
+  transition: all 0.6s;
+
+  &.shadow-1 {
+    background-color: #cfb;
+    z-index: -1;
+    transform: rotate(1deg);
+
+    &.card-hover {
+      transform: rotate(2deg);
+    }
+  }
+
+  &.shadow-2 {
+    background-color: plum;
+    z-index: -2;
+    transform: rotate(2deg);
+    
+    &.card-hover {
+      transform: rotate(4deg);
+    }
+  }
 }
 
 .input {
@@ -233,15 +220,15 @@ body {
 
 .keyword-heading {
   position: relative;
+  width: 100%;
+  padding: 50px 100px 0;
   font-size: 1.7rem;
   font-weight: 300;
-  padding: 50px 100px 0;
-  width: 100%;
   background-image: linear-gradient(transparent,
     transparent 75%, #9bf 74%, #9bf 76%, transparent 75%,
     transparent 80%, plum 79%, plum 81%, transparent 80%);
 
-  span {
+  span { // remove button
     position: absolute;
     right: 25px;
     top: 52px;
@@ -258,8 +245,19 @@ body {
   }
 }
 
+.feed-empty{
+  margin-top: 40px;
+  text-align: center;
+  padding: 20px 0;
+  color: #888;
+ 
+  background-image: linear-gradient(transparent,
+     transparent 40%, lightgreen 39%, lightgreen 41%, transparent 40%,
+     transparent 50%, lightpink 49%, lightpink 51%, transparent 50%);
+ }
 
-//Start of Filter and Browse section
+
+// BROWSE
 
 .form-container{
   padding: 30px;
@@ -271,38 +269,18 @@ body {
 .query-form {
   transition: all 1s;
   overflow: hidden;
-  padding: 0;
-  box-shadow: none;
 }
 
-.label{
+.label {
   color: #555;
-}
-
-.submit-btn,
-.to-filters{
-  color: #333;
-}
-
-.redisplay-form{
-  position: relative;
-  top: 0;
-  border: 1px solid lightgreen;
-  border-radius: 10px;
-  box-shadow: 0 0 0 3px  lightblue;
 }
 
 .current-filters{
   margin: 10px;
 
-  h2, p {
-    margin: 5px;
+  h2 {
+    margin: 15px 0;
     text-transform: uppercase;
-  }
-
-  button {
-    position: relative;
-    top: 4px;
   }
 }
 
@@ -326,28 +304,7 @@ body {
   }
 }
 
-.submit-btn{
-  border: 3px solid lightblue;
-  font-weight: bold;
-}
-
-
-//END of Filter and Browse Section
-
-
-.feed-empty{
- margin-top: 40px;
- text-align: center;
- padding: 20px 0;
- color: #888;
-
- background-image: linear-gradient(transparent,
-    transparent 40%, lightgreen 39%, lightgreen 41%, transparent 40%,
-    transparent 50%, lightpink 49%, lightpink 51%, transparent 50%);
-}
-
-
-//Start of Top Stories Section
+// TOP STORIES
 
 .top-categories{
   // padding: 30px;
@@ -385,9 +342,7 @@ body {
   height: 300px;
 }
 
-
-//End of Top Stories Section
-
+// NAVBAR
 
 .nav-item{
   position: relative;
@@ -396,19 +351,14 @@ body {
   padding: 15px 15px;
   width: 9em;
 
-  &:hover {
+  &:hover, &.is-selected {
     background-color: white;
     color: #888;
   }
 
-  &:first-of-type {
-    margin-left: 0px;
-  }
-}
-
-.is-selected {
-  background-color: white;
-  color: #888;
+  // &:first-of-type {
+  //   margin-left: 50px;
+  // }
 }
 
 .link-border {
@@ -440,15 +390,14 @@ body {
 }
 
 ::-webkit-scrollbar-thumb {
-  background-color: #eee;
-  border-radius: 2px;
+  background-color: #ddd;
 }
 
 ::-webkit-scrollbar-track {
-  background-color: rgba(240, 250, 255, 0);
+  // background-color: transparent;
   // transition: all 10s; Not working ??
   &:hover {
-    background-color: rgba(240, 250, 255, 1);
+    background-color: #def;
   }
 }
 
