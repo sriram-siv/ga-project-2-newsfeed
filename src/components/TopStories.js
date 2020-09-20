@@ -43,7 +43,7 @@ class TopStories extends React.Component{
     
     return (
       <>
-        <section id={!this.state.loading && 'topstories-loading'}>
+        <section id={!this.state.loading ? 'topstories-loading' : ''}>
           <div className="header"></div>
           <div className="navbar form-container" role="navigation" aria-label="sub navigation">
             <div className="navbar-brand">
@@ -51,7 +51,7 @@ class TopStories extends React.Component{
             </div>
           </div>
           <div className='outer-top-stories'>
-            <div className="loading" id={this.state.loading && 'is-loading'}>LOADING</div>
+            <div className="loading" id={this.state.loading ? 'is-loading' : ''}>LOADING</div>
             <div className="news-grid">
               {this.state.stories && this.state.stories.articles.map((article, i) => <NewsCard key={i} {...article} />)}
             </div>
