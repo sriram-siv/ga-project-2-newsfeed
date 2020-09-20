@@ -349,6 +349,25 @@ body {
 
 //Start of Top Stories Section
 
+.top-categories{
+  // padding: 30px;
+  overflow-y: hidden;
+  height: 16.5em;
+  background-color: #ccc;
+
+  h2, h3{
+    text-align: center;
+  }
+
+  h2{
+    font-size: 1.75em;
+    margin-top: 50px;
+  }
+  
+}
+
+
+
 .outer-top-stories{
   height: 100vh;
 }

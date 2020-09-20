@@ -45,10 +45,12 @@ class TopStories extends React.Component{
       <>
         <section id={!this.state.loading ? 'topstories-loading' : ''}>
           <div className="header"></div>
-          <div className="navbar form-container" role="navigation" aria-label="sub navigation">
-            <div className="navbar-brand">
+          <div className="top-categories" aria-label="sub navigation">
+            <div className="sub-navbar">
               <SubNavBtns isSubSelected={this.state.subselected} onClick={this.handleClick} className="button is-large"/>
             </div>
+            <h2>top stories</h2>
+            <h3>from around the world</h3>
           </div>
           <div className='outer-top-stories'>
             <div className="loading" id={this.state.loading ? 'is-loading' : ''}>LOADING</div>
