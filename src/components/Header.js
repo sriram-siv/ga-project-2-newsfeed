@@ -12,7 +12,7 @@ const Header = ({ feedActive, loading }) => {
         </div>
         <p className="subtitle">browse - create - curate<br /> your own personalised news</p>
         {feedActive
-          ? <div className="loading" id={loading && 'is-loading'}>LOADING</div>
+          ? <div className="loading" id={loading ? 'is-loading' : ''}>LOADING</div>
           : <div className="feed-empty">
             <h3>Your feed is empty right now <br /> Browse to add</h3>
           </div>}

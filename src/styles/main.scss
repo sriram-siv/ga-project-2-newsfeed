@@ -306,13 +306,38 @@ body {
 
 // TOP STORIES
 
+.top-categories{
+  // padding: 30px;
+  overflow-y: hidden;
+  height: 16.5em;
+  background-color: #ccc;
+
+  h2, h3{
+    text-align: center;
+  }
+
+  h2{
+    font-size: 1.75em;
+    margin-top: 50px;
+  }
+  
+}
+
+.button.is-large.subnav-btn{
+  background-color: #ccc;
+  border-radius: 0;
+  border: 0;
+  border-width: 0;
+}
+
+
+
 .outer-top-stories{
   height: 100vh;
 }
 
-.is-subselected{
-  color: white;
-  background-color: #888;
+#is-subselected{
+  background-color: white;
 }
 
 #topstories-loading {
