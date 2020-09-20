@@ -366,15 +366,21 @@ body {
   
 }
 
+.button.is-large.subnav-btn{
+  background-color: #ccc;
+  border-radius: 0;
+  border: 0;
+  border-width: 0;
+}
+
 
 
 .outer-top-stories{
   height: 100vh;
 }
 
-.is-subselected{
-  color: white;
-  background-color: #888;
+#is-subselected{
+  background-color: white;
 }
 
 #topstories-loading {
