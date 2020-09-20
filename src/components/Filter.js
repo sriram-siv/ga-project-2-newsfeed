@@ -15,11 +15,6 @@ const Filter = ({ params, suggestions, formActive,
     backgroundColor: '#eee',
     margin: '5px auto'
   }
-
-  const formStyle = {
-    height: formActive ? '500px' : '0px',
-    backgroundColor: 'rgba(0,0,0,0)'
-  }
   
   
   return (
@@ -28,7 +23,7 @@ const Filter = ({ params, suggestions, formActive,
         <form onSubmit={handleSubmit}
           className="query-form"
           autoComplete="off"
-          style={formStyle} >
+          style={{ height: formActive ? '500px' : '0px' }} >
           <div className="field">
             <label className="label">Keyword</label>
             <div className="control">
@@ -67,14 +62,16 @@ const Filter = ({ params, suggestions, formActive,
           </button>
           <div className="current-filters">
             <h2>Current filters</h2>
-            <div className="buttons are-small button-box">
-              {params.q &&
-                <button className="button add-feed" onClick={() => addToFeed('q')}>{params.q}<span>&nbsp;<img src={image} /></span></button>
-              }
-              {params.source &&
-                <button className="button add-feed" onClick={() => addToFeed('source')}>{params.sourceName}<span>&nbsp;<img src={image}/></span></button>
-              }
-            </div>
+            {params.q &&
+              <button className="sub-btn" onClick={() => addToFeed('q')}>
+                <div className="filter-label">{params.q}</div>
+                <span>sub<img src={image} /></span>
+              </button>}
+            {params.source &&
+              <button className="sub-btn" onClick={() => addToFeed('source')}>
+                <div className="filter-label">{params.sourceName}</div>
+                <span>sub<img src={image} /></span>
+              </button>}
           </div>
         </div>
         

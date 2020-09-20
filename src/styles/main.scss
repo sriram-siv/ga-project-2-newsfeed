@@ -6,19 +6,17 @@
 
 
 
-body {
+body button {
   font-family: 'Montserrat', sans-serif;
 }
 
 .button {
   border-radius: 1px;
-  border: 2px solid lightblue;
-  border-width: 2px 4px;
-  font-family: 'Montserrat', sans-serif;
+  border: 2px solid #9bf;
 
   &:hover {
-    background-color: #efe;
-    border-color: lightblue;
+    border-color: #9bf;
+    background-color: #f9f9ff;
   }
 
   &:focus {
@@ -110,7 +108,7 @@ body {
     padding: 15px 20px;
     font-weight: 600;
     color: #555;
-    background-color: rgba(255,255,255,0);
+    background-color: transparent;
 
     transition: all 0.7s;
   }
@@ -197,9 +195,21 @@ body {
 .input {
   border-radius: 1px;
   border: 1px solid lightblue;
+  box-shadow: none;
 
-  &:focus, &:active, &:hover {
-    border: 2px solid lightgreen;
+  &:focus {
+    border: 2px solid lightblue;
+    box-shadow: none;
+    
+    &:hover {
+      border: 2px solid lightblue;
+      
+    }
+  }
+
+  &:hover {
+    border: 1px solid lightblue;
+    box-shadow: none;
   }
 }
 
@@ -276,6 +286,7 @@ body {
 }
 
 .current-filters{
+  position: relative;
   margin: 10px;
 
   h2 {
@@ -284,23 +295,45 @@ body {
   }
 }
 
-.add-feed{
+.sub-btn {
+  position: relative;
+  top: 0;
+  line-height: 1.7em;
+  min-width: 6em;
+  margin: 5px;
+  background-color: white;
   border: 2px solid lightgreen;
   border-radius: 2px;
   text-transform: uppercase;
+  transition: all 1s;
+  cursor: pointer;
+
+  .filter-label {
+    padding: 5px;
+  }
 
   span {
-    width: 0;
+    display: block;
+    height: 0;
     overflow: hidden;
-    transition: margin-left 1s;
+    transition: all 0.5s;
+  }
+
+  img {
+    position: relative;
+    top: 3px;
+    left: 5px;
+    margin-left: 10px;
   }
 
   &:hover {
     span {
-      width: auto;
-      margin-left: 15px;
-      margin-top: 2px;
+      height: 1.7em;
     }
+  }
+
+  &:focus {
+    outline: none;
   }
 }
 
