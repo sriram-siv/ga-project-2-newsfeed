@@ -260,10 +260,11 @@ body button {
   text-align: center;
   padding: 20px 0;
   color: #888;
+  z-index: 1;
  
-  background-image: linear-gradient(transparent,
-     transparent 40%, lightgreen 39%, lightgreen 41%, transparent 40%,
-     transparent 50%, lightpink 49%, lightpink 51%, transparent 50%);
+  background-image: linear-gradient(white,
+    white 48%, #9bf 48%, #9bf 49%, white 49%,
+    white 52%, plum 52%, plum 53%, white 53%);
  }
 
 
@@ -273,7 +274,6 @@ body button {
   padding: 30px;
   overflow-y: hidden;
   height: 16.5em;
-  // background-image: linear-gradient(lightblue, white 100%);
 }
 
 .query-form {
@@ -416,6 +416,17 @@ body button {
   overflow-x: scroll;
   padding: 20px 0;
 }
+
+.section-container {
+  overflow: hidden;
+  height: 475px;
+  transition: all 1s;
+
+  &.collapsed {
+    height: 0;
+  }
+}
+
 
 ::-webkit-scrollbar {
   width: 10px;

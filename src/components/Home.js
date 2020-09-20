@@ -10,11 +10,13 @@ class Home extends React.Component {
   state = {
     keywords: null,
     sources: null,
-    loading: true
+    loading: true,
+    feedActive: false
   }
 
   async componentDidMount() {
     this.getSubs()
+    this.setState({ feedActive: getKeywords() || getSources() })
   }
 
   getSubs = async () => {
@@ -53,16 +55,14 @@ class Home extends React.Component {
 
   removeSub = (type, query) => {
     removeSubscription(type, query)
-    this.getSubs()
-
-    // TODO animate removal and dont reget subs - not necessary to poll the api again
+    this.setState({ feedActive: getKeywords() || getSources() })
   }
 
 
   render() {
     return (
       <>
-        <Header feedActive={getKeywords() || getSources()} loading={this.state.loading} />
+        <Header feedActive={this.state.feedActive} loading={this.state.loading} />
         {this.state.sources &&
           this.state.sources.map((source, i) => <SectionScroll key={i} query={source} type="source" removeSub={this.removeSub} />)}
         {this.state.keywords &&

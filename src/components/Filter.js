@@ -7,9 +7,9 @@ const Filter = ({ params, suggestions, formActive,
   
   const style = {
     position: 'absolute',
-    top: '11em',
-    left: '18px',
-    width: 'calc(100% - 36px)',
+    top: '11.25em',
+    left: '30px',
+    width: 'calc(100% - 60px)',
     zIndex: '1',
     border: !suggestions ? '' : '1px solid lightblue',
     backgroundColor: '#eee',
