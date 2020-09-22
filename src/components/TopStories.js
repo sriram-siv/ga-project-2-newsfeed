@@ -7,7 +7,7 @@ import { getTopStories } from '../lib/api'
 class TopStories extends React.Component{
   state= {
     stories: null,
-    subselected: 'General',
+    subselected: 'GENERAL',
     loading: true
   }
 

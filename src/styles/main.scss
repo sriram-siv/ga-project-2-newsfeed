@@ -340,7 +340,7 @@ body button {
 // TOP STORIES
 
 .top-categories{
-  // padding: 30px;
+  
   overflow-y: hidden;
   height: 16.5em;
   background-color: #ccc;
@@ -356,19 +356,8 @@ body button {
   
 }
 
-.button.is-large.subnav-btn{
-  background-color: #ccc;
-  border-radius: 0;
-  border: 0;
-  border-width: 0;
-}
-
 .outer-top-stories{
   height: 100vh;
-}
-
-#is-subselected{
-  background-color: white;
 }
 
 #topstories-loading {
@@ -378,20 +367,25 @@ body button {
 // NAVBAR
 
 .nav-item{
+  display: inline-block;
   position: relative;
   text-align: right;
   color: #555;
   padding: 15px 15px;
   width: 9em;
 
+  transition: all 0.2s;
+
   &:hover, &.is-selected {
     background-color: white;
     color: #888;
   }
 
-  // &:first-of-type {
-  //   margin-left: 50px;
-  // }
+  &.sub {
+    font-size: 0.9em;
+    text-align: left;
+    width: auto;
+  }
 }
 
 .link-border {
@@ -442,15 +436,5 @@ body button {
   // transition: all 10s; Not working ??
   &:hover {
     background-color: #def;
-  }
-}
-
-
-
-// Media rules
-
-@media only screen and (max-width: 1000px){
-  .button.is-large.subnav-btn{
-    font-size: 1.2em;
   }
 }

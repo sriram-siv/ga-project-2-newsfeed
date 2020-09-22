@@ -37,6 +37,8 @@ export const removeSubscription = (type, query) => {
     case 'source':
       itemName = 'savedSources'
       break
+    default:
+      break
   }
   
   localStorage.setItem(itemName,

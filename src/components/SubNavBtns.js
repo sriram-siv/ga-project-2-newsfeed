@@ -6,12 +6,12 @@ const SubNavBtns = (props) => {
 
   return (
     btnCategories.map((category, i) => {
-      return <button key={i} onClick={props.onClick}
-        className={'button is-large subnav-btn'} 
-        id={`${props.isSubSelected === category ? 'is-subselected' : ''}`}
-      >
-        {category}
-      </button>
+      return (
+        <div key={i} onClick={props.onClick}
+          className={`nav-item sub ${props.isSubSelected === category.toUpperCase() ? 'is-selected' : ''}`}>
+          {category.toUpperCase()}
+        </div>
+      )
     })
   )  
 }
