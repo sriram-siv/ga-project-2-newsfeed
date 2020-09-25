@@ -1,9 +1,6 @@
-
 @import '~bulma/bulma.sass';
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,600;1,300&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500&display=swap');
-
-
 
 
 body button {
@@ -32,7 +29,7 @@ body button {
   background-image: linear-gradient(#ffcaff,
     #ffcaff 4px, #cfb 3px,
     #cfb 7px, #9bf 6px, #9bf 9px, white 8px);
-  min-height: 20px;
+  min-height: 9px;
 }
 
 // Misspelt to avoid bulma clash
@@ -177,7 +174,7 @@ body button {
     transform: rotate(1deg);
 
     &.card-hover {
-      transform: rotate(2deg);
+      transform: rotate(3deg);
     }
   }
 
@@ -187,7 +184,7 @@ body button {
     transform: rotate(2deg);
     
     &.card-hover {
-      transform: rotate(4deg);
+      transform: rotate(6deg);
     }
   }
 }
@@ -203,7 +200,6 @@ body button {
     
     &:hover {
       border: 2px solid lightblue;
-      
     }
   }
 
@@ -339,29 +335,22 @@ body button {
 
 // TOP STORIES
 
-.top-categories{
-  
+.top-stories-banner{
+  height: 14em;
   overflow-y: hidden;
-  height: 16.5em;
-  background-color: #ccc;
+  background-color: #ddd;
+  padding-top: 60px;
+  margin-bottom: 50px;
+  text-align: center;
+  transition: all 1s;
 
-  h2, h3{
-    text-align: center;
-  }
-
-  h2{
+  h2 {
     font-size: 1.75em;
-    margin-top: 50px;
   }
-  
 }
 
-.outer-top-stories{
-  height: 100vh;
-}
-
-#topstories-loading {
-  height: 300px;
+#top-stories-loading {
+  height: 18em;
 }
 
 // NAVBAR
@@ -385,23 +374,12 @@ body button {
     font-size: 0.9em;
     text-align: left;
     width: auto;
+    cursor: pointer;
   }
 }
 
-.link-border {
-  position: absolute;
-  bottom: -9px;
-  left: 0;
-  height: 9px;
-  width: 9em;
-  background-color: transparent;
-}
-
-.logo {
-  width: 45px;
-  position: absolute;
-  right: 20px;
-  top: 4px;
+.sub-nav {
+  background-color: #ddd;
 }
 
 // SCROLL
@@ -421,7 +399,6 @@ body button {
   }
 }
 
-
 ::-webkit-scrollbar {
   width: 10px;
   height: 10px;
@@ -432,8 +409,6 @@ body button {
 }
 
 ::-webkit-scrollbar-track {
-  // background-color: transparent;
-  // transition: all 10s; Not working ??
   &:hover {
     background-color: #def;
   }

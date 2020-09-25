@@ -16,7 +16,6 @@ const Filter = ({ params, suggestions, formActive,
     margin: '5px auto'
   }
   
-  
   return (
     <div className='autocomplete-container'>
       <div className="form-container">
@@ -26,39 +25,31 @@ const Filter = ({ params, suggestions, formActive,
           style={{ height: formActive ? '500px' : '0px' }} >
           <div className="field">
             <label className="label">Keyword</label>
-            <div className="control">
-              <input
-                className="input"
-                placeholder="Keyword"
-                name='q'
-                value={params.q}
-                onChange={handleChange}
-              />
-            </div>
+            <input
+              className="input"
+              placeholder="Keyword"
+              name='q'
+              value={params.q}
+              onChange={handleChange}
+            />
           </div>
-          <div className="field autocomplete-container">
-            <label className="label">Source</label>
-            <div className="control">
-              <input
-                className="input"
-                placeholder="Source"
-                name="sourceName"
-                value={params.sourceName}
-                onChange={handleChange}
-                onBlur={handleBlur}
-              />
-            </div>
-          </div>
-
           <div className="field">
-            <button type="submit" className="button is-fullwidth">SEARCH NEWS</button>
+            <label className="label">Source</label>
+            <input
+              className="input"
+              placeholder="Source"
+              name="sourceName"
+              value={params.sourceName}
+              onChange={handleChange}
+              onBlur={handleBlur}
+            />
           </div>
+          <button type="submit" className="button is-fullwidth">SEARCH NEWS</button>
         </form>
         {/* ONLY DISPLAY THIS DIV WHEN FORM REDUCES TO 0 HEIGHT */}
-        <div className="column is-full query-form">
-          <button onClick={() => toggleForm(true)} 
-            className="button is-fullwidth">
-              BACK TO FILTERS
+        <div className="query-form">
+          <button onClick={() => toggleForm(true)} className="button is-fullwidth">
+              SEARCH AGAIN
           </button>
           <div className="current-filters">
             <h2>Current filters</h2>
@@ -75,13 +66,13 @@ const Filter = ({ params, suggestions, formActive,
           </div>
         </div>
         
-
       </div>
+
       {suggestions &&
       <div style={style}>
-        {suggestions.map((item, i) => {
-          return <div className="autocomplete-item" key={i} onClick={handleAutocomplete}>{item}</div>
-        })}
+        {suggestions.map((item, i) => (
+          <div className="autocomplete-item" key={i} onClick={handleAutocomplete}>{item}</div>
+        ))}
       </div>}
     </div>
   )

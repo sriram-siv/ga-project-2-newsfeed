@@ -1,13 +1,23 @@
 import React from 'react'
 
-import NewsCard from './NewsCard'
-import SubNavBtns from './SubNavBtns'
 import { getTopStories } from '../lib/api'
 
+import NewsCard from './NewsCard'
+import SubNav from './SubNav'
+
 class TopStories extends React.Component{
-  state= {
+
+  state = {
+    categories: [
+      'GENERAL',
+      'BUSINESS',
+      'TECHNOLOGY',
+      'ENTERTAINMENT',
+      'HEALTH',
+      'SPORT'
+    ],
     stories: null,
-    subselected: 'GENERAL',
+    selected: 'GENERAL',
     loading: true
   }
 
@@ -20,50 +30,40 @@ class TopStories extends React.Component{
     })
   }
 
-  handleClick = event =>{
-    const subselected = event.target.textContent
-    
-    this.setState({
-      subselected: subselected
-    })
-    
-    this.handleLoad(event)
-  }
+  handleClick = event => {
+    const category = event.target.innerHTML
 
-  handleLoad = async event =>{
-    const response = await getTopStories(event.target.textContent)
-    
     this.setState({
-      stories: response.data,
-      loading: false
+      selected: category,
+      stories: null,
+      loading: true
+    }, async () => {
+      const response = await getTopStories(category)
+      this.setState({
+        stories: response.data,
+        loading: false
+      })
     })
   }
 
-  render(){
+  render() {
+    const { loading, selected, categories, stories } = this.state
     
     return (
       <>
-        <section id={!this.state.loading ? 'topstories-loading' : ''}>
-          <div className="header"></div>
-          <div className="top-categories" aria-label="sub navigation">
-            <div className="sub-navbar">
-              <SubNavBtns isSubSelected={this.state.subselected} onClick={this.handleClick} className="button is-large"/>
-            </div>
-            <h2>top stories</h2>
-            <h3>from around the world</h3>
-          </div>
-          <div className='outer-top-stories'>
-            <div className="loading" id={this.state.loading ? 'is-loading' : ''}>LOADING</div>
-            <div className="news-grid">
-              {this.state.stories && this.state.stories.articles.map((article, i) => <NewsCard key={i} {...article} />)}
-            </div>
-          </div> 
-        </section>
+        <div className="header"></div>
+        <SubNav categories={categories} selected={selected} handleClick={this.handleClick} />
+        <div className="top-stories-banner" id={loading ? 'top-stories-loading' : ''}>
+          <h2><em>TOP STORIES</em></h2>
+          <p>from around the world</p>
+          <div className="loading" id={loading ? 'is-loading' : ''}>LOADING</div>
+        </div>
+        <div className="news-grid">
+          {stories && stories.articles.map((article, i) => <NewsCard key={i} {...article} />)}
+        </div>
       </>
     )
   }
-
-
 }
 
 export default TopStories

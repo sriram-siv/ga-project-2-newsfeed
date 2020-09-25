@@ -1,8 +1,8 @@
 import { notify } from 'react-notify-toast'
 
 const popupStyles = { 
-  background: 'lightblue',
-  text: '#555' 
+  background: '#9bf',
+  text: '#666' 
 }
 
 export const popupNotification = message => {

@@ -7,7 +7,12 @@ class Navbar extends React.Component {
     selected: 'feed'
   }
 
-  // TODO start selected value as the current page
+  componentDidMount = () => {
+    const url = window.location.pathname
+      .replace('/', '')
+      .replace('-', ' ')
+    if (url) this.setState({ selected: url })
+  }
 
   selectNavItem = event => {
     this.setState({ selected: event.target.innerHTML.toLowerCase() })
@@ -15,7 +20,6 @@ class Navbar extends React.Component {
 
   render() {
     const { selected } = this.state
-    // <div className="link-border"></div>  <- in link
     return (
       <nav className="navbar">
         <div className="navbar-brand">
