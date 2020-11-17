@@ -1,7 +1,7 @@
 import React from 'react'
 
-import { getKeywords, getSources, removeSubscription } from '../lib/feed'
-import { getEverything } from '../lib/api'
+import { getKeywords, getCountries, removeSubscription } from '../lib/feed'
+import { getStories, getTopStoriesInCountry } from '../lib/api'
 import Header from './Header'
 import SectionScroll from './SectionScroll'
 
@@ -9,14 +9,14 @@ class Home extends React.Component {
 
   state = {
     keywords: null,
-    sources: null,
+    countries: null,
     loading: true,
     feedActive: false
   }
 
   async componentDidMount() {
     this.getSubs()
-    this.setState({ feedActive: getKeywords() || getSources() })
+    this.setState({ feedActive: getKeywords() || getCountries() })
   }
 
   getSubs = async () => {
@@ -29,12 +29,12 @@ class Home extends React.Component {
       this.setState({ keywords: null })
     }
     
-    const sources = getSources()
-    if (sources) {
-      const sourcesObj = await this.getArticles(sources, 'source')
-      this.setState({ sources: sourcesObj, loading: false })
+    const countries = getCountries()
+    if (countries) {
+      const countriesObj = await this.getArticles(countries, 'country')
+      this.setState({ countries: countriesObj, loading: false })
     } else {
-      this.setState({ sources: null, loading: false })
+      this.setState({ countries: null, loading: false })
     }
   }
 
@@ -42,10 +42,10 @@ class Home extends React.Component {
     const queryObj = []
 
     for (let i = 0; i < param.length; i++) {
-      const q = type === 'q' ? param[i] : ''
-      const source = type === 'source' ? param[i] : ''
+      const response = type === 'q'
+        ? await getStories({ q: param[i], country: '' })
+        : await getTopStoriesInCountry(param[i])
 
-      const response = await getEverything({ q: q, sources: source, pageSize: 20 })
       console.log(response)
       queryObj.push({ q: param[i], articles: response.data.articles })
     }
@@ -55,18 +55,19 @@ class Home extends React.Component {
 
   removeSub = (type, query) => {
     removeSubscription(type, query)
-    this.setState({ feedActive: getKeywords() || getSources() })
+    this.setState({ feedActive: getKeywords() || getCountries() })
   }
 
 
   render() {
+
     return (
       <>
         <Header feedActive={this.state.feedActive} loading={this.state.loading} />
-        {this.state.sources &&
-          this.state.sources.map((source, i) => <SectionScroll key={i} query={source} type="source" removeSub={this.removeSub} />)}
         {this.state.keywords &&
           this.state.keywords.map((keyword, i) => <SectionScroll key={i} query={keyword} type="keyword" removeSub={this.removeSub} />)}
+        {this.state.countries &&
+          this.state.countries.map((country, i) => <SectionScroll key={i} query={country} type="country" removeSub={this.removeSub} />)}
       </>
     )
   }

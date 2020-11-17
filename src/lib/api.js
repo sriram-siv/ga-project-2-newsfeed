@@ -1,24 +1,24 @@
 import axios from 'axios'
 
-const baseUrl = 'https://newsapi.org/v2'
+const baseUrl = 'https://gnews.io/api/v4'
 const apiKey = process.env.REACT_APP_MY_API_KEY
 
-export const getEverything = params => {
+export const getStories = params => {
 
   let queryString = ''
   Object.keys(params).forEach(key => {
     if (params[key]) {
-      queryString += `${params[key] ? key + '=' + params[key] + '&' : ''}`
+      queryString += `${key}=${params[key]}&`
     }
   })
 
-  return axios.get(`${baseUrl}/everything?${queryString}apiKey=${apiKey}`)
-}
-
-export const getSources = () => {
-  return axios.get(`${baseUrl}/sources?apiKey=${apiKey}`)
+  return axios.get(`${baseUrl}/search?${queryString}token=${apiKey}`)
 }
 
 export const getTopStories = (category) => {
-  return axios.get(`${baseUrl}/top-headlines?category=${category.toLowerCase()}&pageSize=15&apiKey=${apiKey}`)
+  return axios.get(`${baseUrl}/top-headlines?topic=${category.toLowerCase()}&token=${apiKey}`)
+}
+
+export const getTopStoriesInCountry = (country) => {
+  return axios.get(`${baseUrl}/top-headlines?country=${country}&token=${apiKey}`)
 }

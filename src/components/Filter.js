@@ -34,12 +34,12 @@ const Filter = ({ params, suggestions, formActive,
             />
           </div>
           <div className="field">
-            <label className="label">Source</label>
+            <label className="label">Country</label>
             <input
               className="input"
-              placeholder="Source"
-              name="sourceName"
-              value={params.sourceName}
+              placeholder="Country"
+              name="countryName"
+              value={params.countryName}
               onChange={handleChange}
               onBlur={handleBlur}
             />
@@ -58,9 +58,9 @@ const Filter = ({ params, suggestions, formActive,
                 <div className="filter-label">{params.q}</div>
                 <span>sub<img src={image} alt="subscribe to search" /></span>
               </button>}
-            {params.source &&
-              <button className="sub-btn" onClick={() => addToFeed('source')}>
-                <div className="filter-label">{params.sourceName}</div>
+            {params.country &&
+              <button className="sub-btn" onClick={() => addToFeed('country')}>
+                <div className="filter-label">{params.countryName}</div>
                 <span>sub<img src={image} alt="subscribe to search" /></span>
               </button>}
           </div>

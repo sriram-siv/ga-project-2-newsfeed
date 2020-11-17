@@ -17,12 +17,12 @@ class TopStories extends React.Component{
       'SPORT'
     ],
     stories: null,
-    selected: 'GENERAL',
+    selected: 'BREAKING-NEWS',
     loading: true
   }
 
   async componentDidMount() {
-    const response = await getTopStories('general')
+    const response = await getTopStories('breaking-news')
     
     this.setState({
       stories: response.data,

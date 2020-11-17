@@ -1,6 +1,7 @@
 import React from 'react'
-import { getEverything, getSources } from '../lib/api'
-import { saveKeyword, saveSource } from '../lib/feed'
+import { getStories, getTopStoriesInCountry } from '../lib/api'
+import { countryCodes } from '../lib/countryCodes'
+import { saveKeyword, saveCountry } from '../lib/feed'
 import { popupNotification } from '../lib/notifications'
 
 import NewsCard from './NewsCard'
@@ -11,41 +12,43 @@ class Browse extends React.Component {
   state = {
     params: {
       q: '',
-      source: '',
-      sourceName: '' 
+      country: '',
+      countryName: ''
     },
-    sources: null,
+    countries: null,
     articles: null,
     suggestions: '',
     formActive: true
   }
 
   async componentDidMount() {
-    const response = await getSources()
-    this.setState({ sources: response.data.sources })
+    this.setState({ countries: countryCodes })
   }
   
-  findMatchingSources(wordSearched) {
+  findMatchingCountries(wordSearched) {
     
-    return this.state.sources.filter(source => {
+    return this.state.countries.filter(country => {
       // Remove illegal regex characters
       const illegalChars = ['(', ')', '[', ']']
       illegalChars.map(char => wordSearched = wordSearched.replaceAll(char, ''))
       
-      return wordSearched.split(' ').every(word => source.id.match(new RegExp(word, 'i')))
-    }).map(source => source.name)
+      return wordSearched.split(' ').every(word => country.name.match(new RegExp(word, 'i')))
+    }).map(country => country.name)
   }
   
   handleSubmit = async (event) => {
     event.preventDefault()
-    // Show error message to user if invalid source
-    if (this.state.params.sourceName !== '' && this.state.params.source === '') {
-      popupNotification('No source matching that name')
+    const { params } = this.state
+    // Show error message to user if invalid country
+    if (params.countryName !== '' && params.country === '') {
+      popupNotification('No country matching that name')
       return
     }
     this.toggleForm(false)
 
-    const response = await getEverything({ ...this.state.params, sourceName: null })
+    const response = params.country && !params.q
+      ? await getTopStoriesInCountry(params.country)
+      : await getStories({ ...this.state.params, countryName: '' })
     console.log(response)
     this.setState({ 
       articles: response.data.articles
@@ -64,31 +67,24 @@ class Browse extends React.Component {
     }
     
     let suggestions = this.state.suggestions
-    if (event.target.name === 'sourceName' && this.state.sources) {
+    if (event.target.name === 'countryName' && this.state.countries) {
       // Remove matched source if user edits the input field
-      params.source = ''
-      suggestions = this.findMatchingSources(event.target.value)
-
+      params.country = ''
+      suggestions = this.findMatchingCountries(event.target.value)
       if (!event.target.value){
         suggestions = ''
       }
     }
-    
     this.setState({ params, suggestions })
   }
 
   handleAutocomplete = event => {
-    let source, sourceName
-    // Find matching object in sources and save id and name to params
-    for (let i = 0; i < this.state.sources.length; i++) {
-      if (this.state.sources[i].name === event.target.innerHTML) {
-        source = this.state.sources[i].id
-        sourceName = this.state.sources[i].name
+    // Find matching object in countries and save id to params
+    for (let i = 0; i < this.state.countries.length; i++) {
+      if (this.state.countries[i].name === event.target.innerHTML) {
+        this.setState({ params: { ...this.state.params, country: this.state.countries[i].code, countryName: event.target.innerHTML } })
       }
     }
-
-    this.setState({
-      params: { ...this.state.params, source, sourceName } })
   }
 
   // Hide autocomplete when input loses focus
@@ -99,7 +95,7 @@ class Browse extends React.Component {
 
   addToFeed = param => {
     if (param === 'q') saveKeyword(this.state.params.q)
-    if (param === 'source') saveSource(this.state.params.source)
+    if (param === 'country') saveCountry(this.state.params.country)
     
     popupNotification('Added in Feed')
   }
@@ -120,7 +116,7 @@ class Browse extends React.Component {
           addToFeed={this.addToFeed} />
           
         <div className="news-grid">
-          {this.state.articles && this.state.articles.map((article, i) => <NewsCard key={i} {...article}/> )}
+          {this.state.articles && this.state.articles.map((article, i) => < NewsCard key={i} {...article} />)}
         </div>
 
       </>

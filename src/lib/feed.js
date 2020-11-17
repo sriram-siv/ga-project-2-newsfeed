@@ -1,8 +1,8 @@
 export const saveKeyword = (keyword) => {
   let list = localStorage.getItem('savedKeywords')
   if (!list) list = keyword
-  else if (!list.split(',').includes(keyword)) {
-    list = `${list},${keyword}`
+  else if (!list.replace(/_\d*/, '').split(',').includes(keyword)) {
+    list += `,${keyword}`
   }
   localStorage.setItem('savedKeywords', list)
 }
@@ -13,17 +13,17 @@ export const getKeywords = () => {
   return null
 }
 
-export const saveSource = (source) => {
-  let list = localStorage.getItem('savedSources')
-  if (!list) list = source
-  else if (!list.split(',').includes(source)) {
-    list = `${list},${source}`
+export const saveCountry = (country) => {
+  let list = localStorage.getItem('savedCountries')
+  if (!list) list = country
+  else if (!list.split(',').includes(country)) {
+    list = `${list},${country}`
   }
-  localStorage.setItem('savedSources', list)
+  localStorage.setItem('savedCountries', list)
 }
 
-export const getSources = () => {
-  const list = localStorage.getItem('savedSources')
+export const getCountries = () => {
+  const list = localStorage.getItem('savedCountries')
   if (list) return list.split(',')
   return null
 }
@@ -34,8 +34,8 @@ export const removeSubscription = (type, query) => {
     case 'keyword':
       itemName = 'savedKeywords'
       break
-    case 'source':
-      itemName = 'savedSources'
+    case 'country':
+      itemName = 'savedCountries'
       break
     default:
       break
