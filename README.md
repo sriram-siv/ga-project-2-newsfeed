@@ -1,4 +1,6 @@
 # GA PROJECT 2: NEWSFEED
+### [VISIT SITE](https://news-feed-sriri.netlify.app/)
+
 ### BRIEF
 
 As a team of 2, create a front end for consuming a publicly available API using React.
@@ -37,17 +39,17 @@ I started the design for these elements by looking for inspiration on the intern
 
 I also decided upon a colour scheme largely inspired by the Recurse Centre website; it is a simple design which emphasises the text content whilst lending it a nice pop with the bright multi-coloured highlights. Using these colours for the fanned cards emphasises the mouse over effect, but it is not overwhelming and the overall perception of the site is still quite simple and focused on the content, just as I had hoped.
 
-![](README/news-card%202.gif)
+![](README/news-card%203.gif)
 
 Taking this inspiration from the Recurse site further I then designed a simple logo for the app in pixel-art style. It was a representation of a newspaper and the inclusion of it in the header of the main page was really effective in adding a bit of character to the app without compromising its simplicity.
 
-![](README/newsfeed-header%202.png)
+![](README/newsfeed-header%203.png)
 
 #### ANIMATION
 
 This was the first time that I had used animations for transitions and it turned out to be a really fun aspect of the whole process. In trying to implement the transition animations I was forced to refactor a lot of the HTML that I had already written to separate the different elements involved in the animation. So, unexpectedly, creating the animation caused me to have a much better understanding of how to structure my HTML and CSS classes. This exercise also gave me a much more detailed understanding of CSS in general as I was forced to use various new properties and find the limitations and workarounds of the ones that I already knew.
 
-![](README/feed-transition%202.gif)
+![](README/feed-transition%203.gif)
 
 #### WORKING WITH AN EXTERNAL API
 
@@ -61,7 +63,7 @@ Upon deploying the app online we were shocked to discover that the News API was 
 
 We set out to implement a custom news feed that the user could populate from searches that they carried out. I started by adding some subscribe buttons to the results pages that corresponded with the search parameters. 
 
-![](README/sub-button%202.gif)
+![](README/sub-button%203.gif)
 
 Upon clicking the button, the query would be saved to local storage; visiting the homepage would then trigger a series of requests based on the items in local storage.
 
@@ -85,7 +87,7 @@ export const getKeywords = () => {
 
 Unlike the normal search results, the feed consisted of separate groups of data for each saved query. Simply stacking all the results on top of each other with headers in-between meant that some content easily be buried at the bottom of a long page. I solved this by the use of horizontal scrolling containers so that each section would only take up one line of results.
 
-![](README/Screenshot%202020-11-17%20at%2011.23.28%202.png)
+![](README/Screenshot%202020-11-17%20at%2011.23.28%203.png)
 
 #### CREATING A SEARCH-AHEAD FORM
 
@@ -109,7 +111,7 @@ findMatchingCountries(wordSearched) {
 
 There were all sorts of quirks to iron out in this implementation with the use of regular expressions, handling empty values, checking for matches upon searching in the case where the user typed out the whole name and styling the element generally.
 
-![](README/search-ahead%202.gif)
+![](README/search-ahead%203.gif)
 
 ### CONCLUSION & KEY LEARNINGS
 
